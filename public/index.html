@@ -1,0 +1,4259 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tu Perfu</title>
+
+  <!-- ==========================================================
+       FUENTE
+       ========================================================== -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    /* ==========================================================
+       IMAGENES PRODUCTOS
+       ========================================================== */
+
+    .producto .icono {
+      width: 100%;
+      height: 175px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .producto .icono img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* ==========================================================
+       LINEA ROSA
+       ========================================================== */
+
+    .linea-rosa {
+      width: min(600px, 80vw);
+      height: 3px;
+      background: #e8a6b8;
+      margin: 0 auto 12px;
+    }
+
+    /* ==========================================================
+       VARIABLES
+       ========================================================== */
+
+    :root {
+      --papel: #e9dfc6;
+      --papel-osc: #ded1ac;
+      --tinta: #23301f;
+      --tinta-suave: #5b6552;
+      --mostaza: #d9a62e;
+      --ladrillo: #b23a2f;
+      --whatsapp: #25d366;
+      --whatsapp-osc: #1da851;
+      --mercado: #009ee3;
+      --mercado-osc: #007eb5;
+      --borde: rgba(35,48,31,0.18);
+      --rosa: #e8a6b8;
+      --radio: 4px;
+    }
+
+    /* ==========================================================
+       CONFIGURACION GENERAL
+       ========================================================== */
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    html {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    /* ==========================================================
+       BODY
+       ========================================================== */
+
+    body {
+      margin: 0;
+      width: 100%;
+      min-height: 100vh;
+      background: #ffffff;
+      color: var(--tinta);
+      font-family: 'Nunito', sans-serif;
+      padding: 5px 16px 80px;
+      overflow-x: hidden;
+    }
+
+    /* ==========================================================
+       HEADER
+       ========================================================== */
+
+    header {
+      width: 100%;
+      max-width: 850px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .logo {
+      width: min(360px, 60vw);
+      height: auto;
+      display: block;
+      margin: 8px auto 10px;
+    }
+
+    .imagenes-debajo-logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      margin: 0;
+      flex-wrap: wrap;
+    }
+
+    .imagenes-debajo-logo img {
+      width: clamp(70px, 7vw, 100px);
+      height: clamp(70px, 7vw, 100px);
+      object-fit: contain;
+    }
+
+    header h1 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: clamp(32px, 5vw, 48px);
+      margin: 2px 0 4px;
+    }
+
+    /* ==========================================================
+       LAYOUT
+       ========================================================== */
+
+    .layout {
+      width: 100%;
+      max-width: 950px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .layout > div {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* ==========================================================
+       FILTROS
+       ========================================================== */
+
+    .filtros {
+      width: 100%;
+      max-width: 900px;
+      margin: 16px auto 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ==========================================================
+       BUSCADOR
+       ========================================================== */
+
+    .buscador {
+      width: min(100%, 560px);
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fdfaf1;
+      border: 1px solid var(--borde);
+      border-radius: var(--radio);
+      padding: 0 12px;
+    }
+
+    .buscador span {
+      color: var(--tinta-suave);
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .buscador input {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      background: transparent;
+      padding: 9px 0;
+      font-family: 'Nunito', sans-serif;
+      font-size: 14px;
+      color: var(--tinta);
+      outline: none;
+    }
+
+    /* ==========================================================
+       CATEGORIAS
+       ========================================================== */
+
+    .tabs-categoria {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .tab-categoria {
+      border: 1px solid var(--borde);
+      background: #fdfaf1;
+      color: var(--tinta-suave);
+      font-family: 'Nunito', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .02em;
+      padding: 7px 13px;
+      border-radius: var(--radio);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .tab-categoria.activo {
+      background: var(--tinta);
+      color: var(--papel);
+      border-color: var(--tinta);
+    }
+
+    /* ==========================================================
+       ZONA PRODUCTOS
+       ========================================================== */
+
+    .zona-productos {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* ==========================================================
+       LINEAS DECORATIVAS
+       ========================================================== */
+
+    .linea-decorativa {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(900px, 130vw);
+      height: 350px;
+      pointer-events: none;
+      z-index: 0;
+      filter: none !important;
+      box-shadow: none !important;
+      background: transparent !important;
+    }
+
+    /* ==========================================================
+       PRODUCTOS
+       ========================================================== */
+
+    .sin-resultados {
+      color: var(--tinta-suave);
+      font-size: 14px;
+      padding: 20px 4px;
+    }
+
+    .productos {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 850px);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .producto {
+      min-width: 0;
+      background: #fdfaf1;
+      border: 1px solid var(--borde);
+      border-radius: var(--radio);
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+      cursor: pointer;
+      transition:
+        transform .18s ease,
+        box-shadow .18s ease;
+    }
+
+    .producto:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 6px 18px rgba(35,48,31,.12);
+    }
+
+    .producto .categoria {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: var(--tinta-suave);
+      border: 1px solid var(--borde);
+      border-radius: var(--radio);
+      padding: 2px 5px;
+      z-index: 2;
+      background: rgba(253,250,241,.9);
+    }
+
+    .producto h3 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0;
+      padding-right: 45px;
+      overflow-wrap: break-word;
+    }
+
+    .producto .precio {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 600;
+      color: var(--ladrillo);
+      font-size: 14px;
+    }
+
+    /* ==========================================================
+       AGREGAR PRODUCTO
+       ========================================================== */
+
+    .producto .fila-agregar {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stepper {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--borde);
+      border-radius: var(--radio);
+      overflow: hidden;
+    }
+
+    .stepper button {
+      width: 28px;
+      height: 28px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 14px;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .stepper button:hover {
+      background: var(--papel-osc);
+    }
+
+    .stepper span {
+      min-width: 28px;
+      text-align: center;
+      font-family: 'Nunito', sans-serif;
+      font-size: 12px;
+    }
+
+    /* ==========================================================
+       MODAL
+       ========================================================== */
+
+    .modal-producto {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        opacity .2s ease,
+        visibility .2s ease;
+    }
+
+    .modal-producto.abierto {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-producto-contenido {
+      position: relative;
+      width: min(560px, 92%);
+      max-height: 85vh;
+      overflow-y: auto;
+      background: #fffdf6;
+      border: 1px solid var(--borde);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow:
+        0 15px 45px rgba(0,0,0,.25);
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 20px;
+      transform: translateY(10px);
+      transition: transform .2s ease;
+    }
+
+    .modal-producto.abierto
+    .modal-producto-contenido {
+      transform: translateY(0);
+    }
+
+    .modal-cerrar {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      border: none;
+      background: transparent;
+      font-size: 30px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--tinta);
+      z-index: 2;
+    }
+
+    .modal-cerrar:hover {
+      color: var(--ladrillo);
+    }
+
+    .modal-producto-icono {
+      min-height: 180px;
+      height: 180px;
+      border: 1px solid var(--borde);
+      background: #fdfaf1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 70px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .modal-producto-icono img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .modal-producto-categoria {
+      display: inline-block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--tinta-suave);
+      border: 1px solid var(--borde);
+      border-radius: var(--radio);
+      padding: 4px 7px;
+    }
+
+    .modal-producto-info h2 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 23px;
+      font-weight: 700;
+      margin: 10px 35px 12px 0;
+      color: var(--tinta);
+    }
+
+    .modal-producto-descripcion {
+      font-family: 'Nunito', sans-serif;
+      line-height: 1.5;
+      color: var(--tinta-suave);
+      font-size: 14px;
+      margin: 0;
+      white-space: pre-line;
+    }
+
+    .modal-producto-precio {
+      font-family: 'Nunito', sans-serif;
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--ladrillo);
+      margin: 14px 0;
+    }
+
+    .modal-cantidad-titulo {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--tinta);
+      margin-bottom: 6px;
+    }
+
+    .modal-cantidad {
+      display: flex;
+      align-items: center;
+      width: max-content;
+      border: 1px solid var(--borde);
+      border-radius: var(--radio);
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .modal-cantidad button {
+      width: 38px;
+      height: 38px;
+      border: 0;
+      background: transparent;
+      font-size: 18px;
+      cursor: pointer;
+      color: var(--tinta);
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .modal-cantidad button:hover {
+      background: var(--papel-osc);
+    }
+
+    .modal-cantidad span {
+      min-width: 40px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .btn-agregar-modal {
+      background: var(--tinta);
+      color: var(--papel);
+      transition: background .2s ease;
+    }
+
+    .btn-agregar-modal:hover {
+      background: #172015;
+    }
+
+    /* ==========================================================
+       CARRITO
+       ========================================================== */
+
+    .carrito-boton {
+      position: fixed;
+      bottom: 90px;
+      left: clamp(20px, 10vw, 100px);
+      width: 90px;
+      height: 90px;
+      border: 1px solid var(--borde);
+      border-radius: 50%;
+      background: #fffdf6;
+      cursor: pointer;
+      font-size: 34px;
+      z-index: 1001;
+      box-shadow:
+        0 3px 10px rgba(0,0,0,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+    }
+
+    .carrito-boton:hover {
+      transform: scale(1.08);
+    }
+
+    /* ==========================================================
+       WHATSAPP
+       ========================================================== */
+
+    .whatsapp-boton {
+      position: fixed;
+      bottom: 90px;
+      left: clamp(130px, 18vw, 200px);
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: var(--whatsapp);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      z-index: 1001;
+      box-shadow:
+        0 3px 10px rgba(0,0,0,0.18);
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .whatsapp-boton svg {
+      width: 43px;
+      height: 43px;
+      display: block;
+      fill: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .whatsapp-boton:hover {
+      transform: scale(1.08);
+      background: var(--whatsapp-osc);
+    }
+
+    /* ==========================================================
+       CONTADOR
+       ========================================================== */
+
+    .carrito-contador {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      min-width: 28px;
+      height: 28px;
+      padding: 0 7px;
+      border-radius: 50%;
+      background: var(--ladrillo);
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Nunito', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid white;
+    }
+
+    /* ==========================================================
+       CARRITO LATERAL
+       ========================================================== */
+
+    .ticket {
+      position: fixed;
+      top: 0;
+      right: -420px;
+      width: 390px;
+      max-width: 90%;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 1000;
+      background: #fffdf6;
+      border-left: 1px solid var(--borde);
+      padding: 22px 18px 24px;
+      box-shadow:
+        -4px 0 15px rgba(0,0,0,0.15);
+      transition: right 0.25s ease;
+      scrollbar-width: thin;
+    }
+
+    .ticket.abierto {
+      right: 0;
+    }
+
+    .ticket h2 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      margin: 0 0 8px;
+      border-bottom: 1px dashed var(--borde);
+      padding-bottom: 8px;
+    }
+
+    .cerrar-carrito {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      border: none;
+      background: transparent;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--tinta);
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .carrito-vacio {
+      color: var(--tinta-suave);
+      font-size: 14px;
+      padding: 8px 0;
+    }
+
+    /* ==========================================================
+       ITEMS CARRITO
+       ========================================================== */
+
+    .linea-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 12px;
+      padding: 6px 0;
+      border-bottom:
+        1px solid rgba(35,48,31,0.08);
+    }
+
+    .linea-item .nombre {
+      color: var(--tinta);
+      flex: 1;
+      min-width: 0;
+    }
+
+    .linea-item .cant {
+      color: var(--tinta-suave);
+    }
+
+    .linea-item .quitar {
+      background: none;
+      border: none;
+      color: var(--ladrillo);
+      cursor: pointer;
+      font-size: 11px;
+      padding: 0 0 0 5px;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    /* ==========================================================
+       TOTAL
+       ========================================================== */
+
+    .total-fila {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-top: 1px dashed var(--borde);
+      margin-top: 8px;
+      padding-top: 8px;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .total-fila .label {
+      font-size: 12px;
+      color: var(--tinta-suave);
+    }
+
+    .total-fila .monto {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--tinta);
+    }
+
+    /* ==========================================================
+       DATOS CLIENTE
+       ========================================================== */
+
+    .datos {
+      border-top: 1px dashed var(--borde);
+      margin-top: 12px;
+      padding-top: 10px;
+    }
+
+    .datos > strong {
+      display: block;
+      font-family: 'Nunito', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 7px;
+    }
+
+    .datos label {
+      display: block;
+      font-size: 11px;
+      color: var(--tinta-suave);
+      margin: 6px 0 3px;
+    }
+
+    .datos input,
+    .datos select {
+      width: 100%;
+      min-width: 0;
+      padding: 7px 8px;
+      border: 1px solid var(--borde);
+      border-radius: var(--radio);
+      background: white;
+      color: var(--tinta);
+      outline: none;
+      font-family: 'Nunito', sans-serif;
+      font-size: 12px;
+    }
+
+    .datos input:focus,
+    .datos select:focus {
+      border-color: var(--mostaza);
+    }
+
+    .datos select:disabled {
+      background: #f3f0e8;
+      color: var(--tinta-suave);
+      cursor: not-allowed;
+    }
+
+    /* ==========================================================
+       ENVIO
+       ========================================================== */
+
+    .envio {
+      border-top: 1px dashed var(--borde);
+      margin-top: 12px;
+      padding-top: 10px;
+    }
+
+    .envio strong {
+      display: block;
+      font-family: 'Nunito', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 7px;
+    }
+
+    /* ==========================================================
+       BOTONES
+       ========================================================== */
+
+    .accion {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-top: 7px;
+      border: none;
+      padding: 10px;
+      border-radius: var(--radio);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .btn-pago {
+      background: var(--mercado);
+      color: white;
+    }
+
+    .btn-pago:hover:not(:disabled) {
+      background: var(--mercado-osc);
+    }
+
+    .btn-whatsapp {
+      background: var(--whatsapp);
+      color: white;
+    }
+
+    .btn-whatsapp:hover:not(:disabled) {
+      background: var(--whatsapp-osc);
+    }
+
+    .accion:disabled {
+      background: var(--papel-osc);
+      color: var(--tinta-suave);
+      cursor: not-allowed;
+    }
+
+    /* ==========================================================
+       ESTADO
+       ========================================================== */
+
+    .estado {
+      font-size: 12px;
+      padding: 8px;
+      margin-top: 7px;
+      border-radius: 4px;
+      background: #eef2e8;
+    }
+
+    .estado.error {
+      background: #f8e3df;
+      color: #7d241d;
+    }
+
+    .nota {
+      font-size: 10px;
+      color: var(--tinta-suave);
+      margin-top: 7px;
+      text-align: center;
+    }
+
+    /* ==========================================================
+       PIE
+       ========================================================== */
+
+    .pie-pagina {
+      text-align: center;
+      margin-top: 28px;
+      padding-top: 14px;
+      color: var(--tinta-suave);
+      font-size: 11px;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    /* ==========================================================
+       TABLETS
+       ========================================================== */
+
+    @media (max-width: 700px) {
+
+      body {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .layout {
+        max-width: 1000px;
+      }
+
+      .productos {
+        max-width: 900px;
+      }
+
+      .carrito-boton {
+        left: 30px;
+      }
+
+      .whatsapp-boton {
+        left: 145px;
+      }
+
+    }
+
+    /* ==========================================================
+       PANTALLAS MEDIANAS
+       ========================================================== */
+
+    @media (max-width: 900px) {
+
+      body {
+        padding-top: 14px;
+      }
+
+      .logo {
+        width: min(350px, 65vw);
+        height: auto;
+        margin: 5px auto 15px;
+      }
+
+      .imagenes-debajo-logo img {
+        width: 90px;
+        height: 90px;
+      }
+
+      .filtros {
+        margin-top: 20px;
+      }
+
+      .productos {
+        grid-template-columns:
+          repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .producto {
+        padding: 8px;
+      }
+
+      .carrito-boton {
+        width: 80px;
+        height: 80px;
+        left: 20px;
+        bottom: 25px;
+        font-size: 30px;
+      }
+
+      .whatsapp-boton {
+        width: 80px;
+        height: 80px;
+        left: 115px;
+        bottom: 25px;
+      }
+
+      .whatsapp-boton svg {
+        width: 38px;
+        height: 38px;
+      }
+
+    }
+
+    /* ==========================================================
+       CELULAR
+       ========================================================== */
+
+    @media (max-width: 700px) {
+
+      body {
+        padding: 10px 10px 100px;
+      }
+
+      .logo {
+        width: min(230px, 70vw);
+        height: auto;
+        margin: 5px auto 15px;
+      }
+
+      .imagenes-debajo-logo {
+        gap: 3px;
+      }
+
+      .imagenes-debajo-logo img {
+        width: 80px;
+        height: 80px;
+      }
+
+      .filtros {
+        margin-top: 22px;
+      }
+
+      .productos {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .producto {
+        padding: 8px;
+      }
+
+      .producto h3 {
+        font-size: 15px;
+      }
+
+      .producto .precio {
+        font-size: 14px;
+      }
+
+      .producto .icono {
+        height: 180px;
+      }
+
+      .linea-decorativa {
+        top: 50px;
+        left: 50%;
+        width: 130%;
+        height: 180px;
+        opacity: 0.7;
+      }
+
+      .carrito-boton {
+        width: 70px;
+        height: 70px;
+        left: auto;
+        right: 20px;
+        bottom: 25px;
+        font-size: 28px;
+      }
+
+      .whatsapp-boton {
+        width: 70px;
+        height: 70px;
+        left: auto;
+        right: 105px;
+        bottom: 25px;
+      }
+
+      .whatsapp-boton svg {
+        width: 34px;
+        height: 34px;
+      }
+
+      .carrito-contador {
+        min-width: 24px;
+        height: 24px;
+        font-size: 12px;
+      }
+
+      .ticket {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px 15px 25px;
+      }
+
+      .modal-producto {
+        padding: 12px;
+      }
+
+      .modal-producto-contenido {
+        grid-template-columns: 1fr;
+        padding: 18px 16px;
+        gap: 14px;
+        max-height: 92vh;
+        width: min(500px, 94%);
+      }
+
+      .modal-producto-icono {
+        min-height: 150px;
+        height: 180px;
+        font-size: 60px;
+      }
+
+      .modal-producto-info h2 {
+        font-size: 23px;
+      }
+
+    }
+
+    /* ==========================================================
+       CELULARES MUY CHICOS
+       ========================================================== */
+
+    @media (max-width: 400px) {
+
+      .imagenes-debajo-logo img {
+        width: 72px;
+        height: 72px;
+      }
+
+      .productos {
+        gap: 8px;
+      }
+
+      .producto {
+        padding: 8px;
+      }
+
+      .producto h3 {
+        font-size: 14px;
+        padding-right: 35px;
+      }
+
+      .producto .categoria {
+        top: 8px;
+        right: 8px;
+        font-size: 8px;
+      }
+
+      .producto .icono {
+        height: 160px;
+      }
+
+      .stepper button {
+        width: 28px;
+        height: 28px;
+      }
+
+      .stepper span {
+        min-width: 26px;
+      }
+
+      .carrito-boton {
+        right: 15px;
+      }
+
+      .whatsapp-boton {
+        right: 95px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ==========================================================
+       BOTON DEL CARRITO
+       ========================================================== -->
+
+  <button
+    class="carrito-boton"
+    id="carrito-boton"
+    type="button"
+    aria-label="Abrir carrito"
+  >
+    🛒
+
+    <span
+      class="carrito-contador"
+      id="carrito-contador"
+    >
+      0
+    </span>
+  </button>
+
+  <!-- ==========================================================
+       WHATSAPP
+       ========================================================== -->
+
+  <a
+    class="whatsapp-boton"
+    href="https://wa.me/5493516344131"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Contactar por WhatsApp"
+  >
+
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+
+      <path
+        d="M20.52 3.48A11.84 11.84 0 0 0 12.06 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.15 1.6 5.96L.05 24l6.28-1.65a11.9 11.9 0 0 0 5.73 1.46h.01c6.55 0 11.88-5.34 11.88-11.9 0-3.18-1.24-6.16-3.43-8.43ZM12.07 21.83h-.01a9.9 9.9 0 0 1-5.05-1.38l-.36-.21-3.73.98 1-3.64-.23-.37a9.9 9.9 0 1 1 8.38 4.62Zm5.43-7.42c-.3-.15-1.78-.88-2.05-.98-.28-.1-.48-.15-.69.15-.2.3-.79.98-.97 1.18-.18.2-.36.23-.66.08-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.74-1.64-2.03-.17-.3-.02-.46.13-.61.13-.13.3-.36.45-.54.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.69-1.66-.94-2.28-.25-.6-.5-.52-.69-.53h-.59c-.2 0-.53.08-.81.38-.28.3-1.06 1.04-1.06 2.54s1.09 2.95 1.24 3.15c.15.2 2.14 3.27 5.18 4.58.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.08-.13-.28-.2-.58-.35Z"
+      />
+
+    </svg>
+
+  </a>
+
+  <!-- ==========================================================
+       ENCABEZADO
+       ========================================================== -->
+
+  <header>
+
+    <img
+      src="/logo.jpeg"
+      alt="Logo"
+      class="logo"
+    >
+
+    <div class="linea-rosa"></div>
+
+    <div class="imagenes-debajo-logo">
+
+      <img
+        src="/armaf.jpeg.jpeg"
+        alt="Armaf"
+      >
+
+      <img
+        src="/lataffa.jpeg.jpeg"
+        alt="Lattafa"
+      >
+
+      <img
+        src="/afna.jpeg.jpeg"
+        alt="Afnan"
+      >
+
+      <img
+        src="/maison.jpeg.jpeg"
+        alt="Maison"
+      >
+
+    </div>
+
+  </header>
+
+  <!-- ==========================================================
+       CONTENIDO
+       ========================================================== -->
+
+  <div class="layout">
+
+    <div>
+
+      <!-- ======================================================
+           FILTROS
+           ====================================================== -->
+
+      <div class="filtros">
+
+        <label class="buscador">
+
+          <span>🔎</span>
+
+          <input
+            type="text"
+            id="input-busqueda"
+            placeholder="Buscar por nombre..."
+          >
+
+        </label>
+
+        <div
+          class="tabs-categoria"
+          id="tabs-categoria"
+        >
+
+          <button
+            class="tab-categoria activo"
+            data-cat="todos"
+            type="button"
+          >
+            Todos
+          </button>
+
+          <button
+            class="tab-categoria"
+            data-cat="oferta"
+            type="button"
+          >
+            Ofertas
+          </button>
+
+          <button
+            class="tab-categoria"
+            data-cat="mujer"
+            type="button"
+          >
+            Mujer
+          </button>
+
+          <button
+            class="tab-categoria"
+            data-cat="hombre"
+            type="button"
+          >
+            Hombre
+          </button>
+
+          <button
+            class="tab-categoria"
+            data-cat="unisex"
+            type="button"
+          >
+            Unisex
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- ======================================================
+           PRODUCTOS
+           ====================================================== -->
+
+      <div class="zona-productos">
+
+        <svg
+          class="linea-decorativa"
+          viewBox="0 0 1400 240"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+
+          <defs>
+
+            <linearGradient
+              id="fadeLine1"
+              x1="1"
+              y1="0"
+              x2="0"
+              y2="0"
+            >
+
+              <stop
+                offset="0%"
+                stop-color="#e8a6b8"
+                stop-opacity="0.65"
+              />
+
+              <stop
+                offset="45%"
+                stop-color="#e8a6b8"
+                stop-opacity="0.40"
+              />
+
+              <stop
+                offset="75%"
+                stop-color="#e8a6b8"
+                stop-opacity="0.15"
+              />
+
+              <stop
+                offset="100%"
+                stop-color="#e8a6b8"
+                stop-opacity="0"
+              />
+
+            </linearGradient>
+
+            <linearGradient
+              id="fadeLine2"
+              x1="1"
+              y1="0"
+              x2="0"
+              y2="0"
+            >
+
+              <stop
+                offset="0%"
+                stop-color="#e8a6b8"
+                stop-opacity="0.48"
+              />
+
+              <stop
+                offset="45%"
+                stop-color="#e8a6b8"
+                stop-opacity="0.28"
+              />
+
+              <stop
+                offset="75%"
+                stop-color="#e8a6b8"
+                stop-opacity="0.10"
+              />
+
+              <stop
+                offset="100%"
+                stop-color="#e8a6b8"
+                stop-opacity="0"
+              />
+
+            </linearGradient>
+
+            <linearGradient
+              id="fadeLine3"
+              x1="1"
+              y1="0"
+              x2="0"
+              y2="0"
+            >
+
+              <stop
+                offset="0%"
+                stop-color="#e8a6b8"
+                stop-opacity="0.45"
+              />
+
+              <stop
+                offset="45%"
+                stop-color="#e8a6b8"
+                stop-opacity="0.28"
+              />
+
+              <stop
+                offset="75%"
+                stop-color="#e8a6b8"
+                stop-opacity="0.12"
+              />
+
+              <stop
+                offset="100%"
+                stop-color="#e8a6b8"
+                stop-opacity="0.02"
+              />
+
+            </linearGradient>
+
+          </defs>
+
+          <path
+            d="M 1400 55 C 1150 -20, 950 180, 700 85 C 450 -5, 200 170, 0 95"
+            fill="none"
+            stroke="url(#fadeLine1)"
+            stroke-width="5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+          <path
+            d="M 1400 175 C 1150 100, 950 300, 700 195 C 450 105, 200 270, 0 215"
+            fill="none"
+            stroke="url(#fadeLine2)"
+            stroke-width="9"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+          <path
+            d="M 1400 205 C 1150 130, 950 320, 700 220 C 450 130, 200 300, 0 235"
+            fill="none"
+            stroke="url(#fadeLine3)"
+            stroke-width="5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+        </svg>
+
+        <section
+          class="productos"
+          id="productos"
+        ></section>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================================
+         CARRITO
+         ======================================================== -->
+
+    <aside
+      class="ticket"
+      id="ticket"
+    >
+
+      <button
+        class="cerrar-carrito"
+        id="cerrar-carrito"
+        type="button"
+        aria-label="Cerrar carrito"
+      >
+        ×
+      </button>
+
+      <h2>Tu pedido</h2>
+
+      <div id="lineas-carrito">
+
+        <p class="carrito-vacio">
+          Todavía no agregaste nada.
+        </p>
+
+      </div>
+
+      <div class="total-fila">
+
+        <span class="label">
+          Total
+        </span>
+
+        <span
+          class="monto"
+          id="total-monto"
+        >
+          $0
+        </span>
+
+      </div>
+
+      <!-- ======================================================
+           DATOS DEL COMPRADOR
+           ====================================================== -->
+
+      <div class="datos">
+
+        <strong>
+          Datos del comprador
+        </strong>
+
+        <label for="nombre">
+          Nombre
+        </label>
+
+        <input
+          id="nombre"
+          type="text"
+          autocomplete="name"
+          placeholder="Tu nombre"
+        >
+
+        <label for="email">
+          Email
+        </label>
+
+        <input
+          id="email"
+          type="email"
+          autocomplete="email"
+          placeholder="tu@email.com"
+        >
+
+        <label for="telefono">
+          Teléfono
+        </label>
+
+        <input
+          id="telefono"
+          type="tel"
+          autocomplete="tel"
+          placeholder="Opcional"
+        >
+
+        <!-- ==================================================
+             ENVIO
+             ================================================== -->
+
+        <div class="envio">
+
+          <strong>
+            📦 Envío por Correo Argentino
+          </strong>
+
+          <label for="direccion">
+            Dirección
+          </label>
+
+          <input
+            id="direccion"
+            type="text"
+            autocomplete="street-address"
+            placeholder="Calle y número"
+          >
+
+          <label for="provincia">
+            Provincia
+          </label>
+
+          <select
+            id="provincia"
+            autocomplete="address-level1"
+          >
+
+            <option value="">
+              Seleccioná una provincia
+            </option>
+
+          </select>
+
+          <label for="localidad">
+            Localidad
+          </label>
+
+          <select
+            id="localidad"
+            autocomplete="address-level2"
+            disabled
+          >
+
+            <option value="">
+              Primero seleccioná una provincia
+            </option>
+
+          </select>
+
+          <div
+            id="otra-localidad-container"
+            style="display:none;"
+          >
+
+            <label for="otra-localidad">
+              Escribí tu localidad
+            </label>
+
+            <input
+              id="otra-localidad"
+              type="text"
+              autocomplete="address-level2"
+              placeholder="Ej: Villa General Belgrano"
+            >
+
+          </div>
+
+          <label for="codigo-postal">
+            Código Postal
+          </label>
+
+          <input
+            id="codigo-postal"
+            type="text"
+            autocomplete="postal-code"
+            placeholder="Ej: 5000"
+          >
+
+        </div>
+
+      </div>
+
+      <!-- ======================================================
+           MERCADO PAGO
+           ====================================================== -->
+
+      <button
+        class="accion btn-pago"
+        id="btn-pago"
+        type="button"
+        disabled
+      >
+        Pagar con Mercado Pago
+      </button>
+
+      <!-- ======================================================
+           WHATSAPP
+           ====================================================== -->
+
+      <button
+        class="accion btn-whatsapp"
+        id="btn-whatsapp"
+        type="button"
+        disabled
+      >
+        Enviar pedido por WhatsApp
+      </button>
+
+      <div
+        id="estado"
+        class="estado"
+        hidden
+      ></div>
+
+      <p class="nota">
+        El pago se procesa directamente en Mercado Pago.
+      </p>
+
+    </aside>
+
+  </div>
+
+  <!-- ==========================================================
+       MODAL DEL PRODUCTO
+       ========================================================== -->
+
+  <div
+    class="modal-producto"
+    id="modal-producto"
+    aria-hidden="true"
+  >
+
+    <div
+      class="modal-producto-contenido"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-producto-nombre"
+    >
+
+      <button
+        class="modal-cerrar"
+        id="modal-cerrar"
+        type="button"
+        aria-label="Cerrar"
+      >
+        ×
+      </button>
+
+      <div
+        class="modal-producto-icono"
+        id="modal-producto-icono"
+      >
+        🧴
+      </div>
+
+      <div class="modal-producto-info">
+
+        <span
+          class="modal-producto-categoria"
+          id="modal-producto-categoria"
+        ></span>
+
+        <h2 id="modal-producto-nombre"></h2>
+
+        <p
+          class="modal-producto-descripcion"
+          id="modal-producto-descripcion"
+        ></p>
+
+        <div
+          class="modal-producto-precio"
+          id="modal-producto-precio"
+        ></div>
+
+        <span class="modal-cantidad-titulo">
+          Cantidad
+        </span>
+
+        <div class="modal-cantidad">
+
+          <button
+            id="modal-menos"
+            type="button"
+          >
+            −
+          </button>
+
+          <span id="modal-cantidad">
+            1
+          </span>
+
+          <button
+            id="modal-mas"
+            type="button"
+          >
+            +
+          </button>
+
+        </div>
+
+        <button
+          class="accion btn-agregar-modal"
+          id="modal-agregar"
+          type="button"
+        >
+          🛒 Agregar al carrito
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ==========================================================
+       JAVASCRIPT
+       ========================================================== -->
+
+  <script>
+
+    /* ==========================================================
+       CONFIGURACION
+       ========================================================== */
+
+    const NUMERO_WHATSAPP = "5493516344131";
+
+    /* ==========================================================
+       PRODUCTOS
+       ========================================================== */
+
+    const PRODUCTOS = [
+
+      {
+        id: "p1",
+        nombre: "Lattafa Yara Rosa EDP 100ml",
+        precio: 80500,
+        categoria: "mujer",
+        oferta: true,
+        imagen: "/mujer/yara.jpg",
+        descripcion:
+          "🌸 Lattafa Yara – 100 ml\n\n¡Dulce, femenino e irresistible! 💕 Yara es una fragancia suave y cremosa, perfecta para quienes aman los aromas delicados con un toque gourmand.\n\n🍊 Notas de salida: Mandarina, heliotropo y orquídea.\n🍓 Notas de corazón: Acordes tropicales y gourmand.\n🍦 Notas de fondo: Vainilla, almizcle y sándalo."
+      },
+
+      {
+        id: "p2",
+        nombre: " Lattafa Yara Moi 100 ml",
+        precio: 70000,
+        categoria: "mujer",
+        oferta: true,
+        imagen: "/mujer/yaramoi.jpg",
+        descripcion:
+          "🌸 Lattafa Yara Moi – 100 ml \n\n Un aroma femenino, elegante y adictivo. ✨ Yara Moi combina dulzura, sensualidad y un toque sofisticado, perfecto para mujeres que quieren destacar con una fragancia envolvente y delicada.\n\n Notas olfativas:🍊 Salida: Durazno y jazmín.\n🌸 Corazón: Caramelo y ámbar.\n🤍 Fondo: Pachulí, sándalo y vainilla."
+      },
+
+      {
+        id: "p3",
+        nombre: " Mayar  Lattafa 100 ml",
+        precio: 70000,
+        categoria: "mujer",
+        oferta: false,
+        imagen: "/mujer/Mayar.jpg",
+        descripcion:
+          "Mayar – Lattafa ✨100 ml \n\n Una fragancia femenina, dulce y sofisticada que combina la frescura de las frutas con delicadas flores y un fondo cálido y sensual. Ideal para quienes buscan un perfume elegante, juvenil y con mucha personalidad.\n\n🍓 Notas de salida: Lichi, frambuesa y hojas de violeta.\n🌸 Notas de corazón: Rosa blanca, peonía y jazmín.\n🤍 Notas de fondo: Vainilla y almizcle."
+      },
+
+      {
+        id: "p4",
+        nombre: "Lattafa Yara Touch 100 ml",
+        precio: 68500,
+        categoria: "mujer",
+        oferta: false,
+        imagen: "/mujer/yaratour.jpg",
+        descripcion:
+          "💕 Lattafa Touch – 100 ml\n\nUna fragancia femenina, dulce y encantadora, perfecta para quienes buscan un aroma delicado pero con mucha personalidad. ✨ Su combinación de frutas, flores y un fondo cremoso la convierte en una opción irresistible para todos los días.\n\nNotas olfativas:\n🍊 Salida: Naranja, bergamota y mandarina.\n🌸 Corazón: Jazmín, rosa y lirio.\n🤍 Fondo: Sándalo, almizcle y vainilla."
+      },
+
+      {
+        id: "p5",
+        nombre: "Eclaire  Lattafa EDP 100ml",
+        precio: 100000,
+        categoria: "mujer",
+        oferta: false,
+        imagen: "/mujer/Eclaire.jpeg",
+        descripcion:
+          "Eclaire – Lattafa ✨🍮 100ml\n\nUna fragancia dulce, cremosa y deliciosa, perfecta para quienes aman los perfumes gourmand. Su irresistible combinación de caramelo, miel y vainilla crea un aroma cálido, envolvente y súper adictivo.\n\nNotas:\n🍯 Salida: Caramelo, leche y azúcar.\n🌸 Corazón: Miel y flores blancas.\n🍦 Fondo: Vainilla, praliné y almizcle."
+      },
+
+      {
+        id: "p6",
+        nombre: "Mayar Natural  Lattafa EDP 100ml",
+        precio: 65000,
+        categoria: "mujer",
+        oferta: false,
+        imagen: "/mujer/MayarNatural.jpg",
+        descripcion:
+          "🍋 Mayar Natural – Lattafa 💫 100ml\n\nUna fragancia femenina, fresca y delicada, con un equilibrio entre notas frutales, florales y un fondo suave y almizclado. Ideal para el uso diario, especialmente para quienes buscan un perfume elegante, limpio y juvenil.\n\nNotas olfativas:\n🍋 Salida: Limón, lichi y frambuesa.\n🌸 Corazón: Rosa, jazmín y peonía.\n🤍 Fondo: Almizcle, vainilla y sándalo."
+      },
+
+      {
+        id: "p7",
+        nombre: "Mayar Intense  Lattafa EDP 100ml",
+        precio: 65000,
+        categoria: "mujer",
+        oferta: false,
+        imagen: "/mujer/MayarIntens.jpeg",
+        descripcion:
+          "🍒 Mayar Intense – Lattafa 💫 100ml\n\nUna fragancia femenina, intensa y sofisticada, perfecta para destacar con un aroma dulce, floral y envolvente. Su combinación de frutas jugosas, flores delicadas y un fondo cálido crea un perfume moderno, elegante y muy femenino.\n\n🌸 Notas olfativas:\n• Salida: Frutas rojas y cítricos.\n• Corazón: Flores blancas y notas florales.\n• Fondo: Vainilla, almizcle y maderas."
+      },
+
+      {
+        id: "p8",
+        nombre: "Afnan 9 PM – Eau de Parfum 100ml",
+        precio: 77400,
+        categoria: "hombre",
+        oferta: false,
+        imagen: "/hombre/9pm.jpeg",
+        descripcion:
+          "✨ Afnan 9 PM – Eau de Parfum 100 ml\n\nAfnan 9 PM es una fragancia masculina intensa, dulce y seductora, ideal para quienes buscan dejar una impresión inolvidable. Su aroma combina notas frescas y especiadas con un fondo cálido y envolvente de vainilla, ámbar y haba tonka.\n\n🍎 Notas de salida: Bergamota, lavandín, canela y manzana.\n🌸 Notas de corazón: Muguete y flor de azahar.\n🔥 Notas de fondo: Pachulí, ámbar, vainilla y haba tonka."
+      },
+
+      {
+        id: "p11",
+        nombre: "Angham  Eau de Parfum 100ml",
+        precio: 74000,
+        categoria: "mujer",
+        oferta: false,
+        imagen: "/mujer/ajsgi.jpeg",
+        descripcion:
+          "✨ Angham – Eau de Parfum 100 ml\n\nAngham es una fragancia dulce, cálida y envolvente, que combina la frescura de los cítricos con la suavidad de la vainilla y el toque especiado del jengibre. Su aroma transmite elegancia, feminidad y sensualidad, ideal para quienes disfrutan de los perfumes dulces y sofisticados.\n\n🌸 Notas de salida: Mandarina, jengibre y pimienta rosa.\n🌺 Notas de corazón: Lavanda, praliné, cacao y jazmín.\n🍦 Notas de fondo: Vainilla, ámbar y almizcle."
+      },
+      {
+      id: "p9",
+        nombre: "Ajwad 60 ml",
+        precio: 58000,
+        categoria: "mujer",
+        oferta: false,
+        imagen: "/mujer/ajwa.jpg",
+        descripcion:
+          "✨ Ajwad – Eau de Parfum 60 ml\n\nAjwad es una fragancia dulce, frutal y envolvente, ideal para quienes buscan un aroma femenino, elegante y sensual. Su composición combina la delicadeza de las flores con la calidez de las maderas y la suavidad de la vainilla, creando una fragancia sofisticada y con mucha personalidad. 🌸\n\n🍓 Notas de salida: Notas frutales.\n🌹 Notas de corazón: Rosa y jazmín.\n🍦 Notas de fondo: Vainilla, almizcle, ámbar y madera de cedro."
+      },
+      {
+        id: "p10",
+        nombre: "Odyssey Candy 100 ml",
+        precio: 67300,
+        categoria: "mujer",
+        oferta: false,
+        imagen: "/mujer/odyseycan.jpg",
+        descripcion:
+         "✨ Odyssey Candy – Eau de Parfum 100 ml\n\nOdyssey Candy es una fragancia dulce, frutal y gourmand, alegre y femenina, con un aroma delicioso que combina frutas jugosas con notas suaves y cremosas.\n\n🍓 Notas de salida: Notas frutales, dulces y chispeantes.\n🌸 Notas de corazón: Un toque floral delicado y femenino.\n🍦 Notas de fondo: Vainilla, caramelo y notas cremosas que dejan una estela cálida, dulce y envolvente.\n\n💖 Ideal para: Quienes aman los perfumes dulces, juveniles y deliciosos, perfectos para usar de día o para una salida especial.\n\n✨ Odyssey Candy: dulce, tentador y adictivo, de esos aromas que dan ganas de volver a sentir una y otra vez."
+      },
+      {   id: "p12",
+        nombre: "Club de nuit Woman 100 ml",
+        precio: 89300,
+        categoria: "mujer",
+        oferta: false,
+        imagen: "/mujer/denuigmujer.jpg",
+        descripcion:
+         "✨ Club de Nuit Woman – Eau de Parfum 105 ml\n\nClub de Nuit Woman es una fragancia elegante, femenina y sofisticada, con una combinación fresca y frutal al comienzo, un corazón floral delicado y un fondo cálido y envolvente.\n\n🍊 Notas de salida: Cítricos y frutas frescas, con un toque chispeante y luminoso.\n🌹 Notas de corazón: Flores elegantes que aportan feminidad y suavidad.\n🌿 Notas de fondo: Almizcle, vainilla, pachulí y notas amaderadas que dejan una estela cálida y sensual.\n\n💖 Ideal para: Mujeres que buscan un perfume elegante, femenino y versátil, perfecto tanto para el día como para una ocasión especial.\n\n✨ Club de Nuit Woman: sofisticado, femenino y con una estela que se hace notar."
+      },
+    {   id: "p13",
+        nombre: "Emaan 100 ml",
+        precio: 69000,
+        categoria: "mujer",
+        oferta: false,
+        imagen: "/mujer/eman.jpeg ",
+        descripcion:
+        "✨ Emaan – Eau de Parfum 100 ml\n\nEmaan es una fragancia femenina, elegante y delicada, con una combinación armoniosa de notas frescas, florales y dulces. Tiene un aroma limpio y sofisticado, perfecto para quienes buscan sentirse femeninas y elegantes.\n\n🍋 Notas de salida: Notas cítricas y frescas que aportan luminosidad.\n🌸 Notas de corazón: Flores delicadas y femeninas que le dan suavidad y elegancia.\n🍦 Notas de fondo: Notas dulces, almizcladas y amaderadas que dejan una estela cálida y envolvente.\n\n💖 Ideal para: Usar todos los días, especialmente en primavera y verano, aunque también queda hermoso para una salida especial.\n\n✨ Emaan: delicado, femenino y elegante, un perfume que transmite limpieza, dulzura y sofisticación."
+      },
+      {id: "p14",
+        nombre: "fakhar rosa 100 ml",
+        precio: 80000,
+        categoria: "mujer",
+        oferta: false,
+        imagen: "/mujer/fakarblacn.jpeg",
+        descripcion:
+        "✨ Fakhar Rosa – Eau de Parfum 100 ml\n\nFakhar Rose es una fragancia femenina, floral, dulce y elegante, con un aroma moderno y sofisticado. Combina flores blancas con notas frutales y un fondo suave y cremoso que la hace muy agradable y envolvente.\n\n🌸 Notas de salida: Frutas y notas frescas que aportan luminosidad.\n🌺 Notas de corazón: Jazmín, tuberosa y flores blancas que le dan un toque femenino y elegante.\n🍦 Notas de fondo: Vainilla, almizcle y notas amaderadas que aportan calidez y suavidad.\n\n💖 Ideal para: Mujeres que disfrutan de los perfumes florales, femeninos y elegantes, perfectos para el día y también para una ocasión especial.\n\n✨ Fakhar Rose: femenino, delicado y sofisticado, con una estela floral que enamora."
+
+
+
+      },
+      { id: "p15",
+        nombre: "Haya 100 ml",
+        precio: 77000,
+        categoria: "mujer",
+        oferta: false,
+        imagen: "/mujer/haya.jpg",
+        descripcion:
+        "✨ Haya – Eau de Parfum 100 ml\n\nHaya es una fragancia dulce, frutal, floral y femenina, fresca y alegre, con un toque elegante y moderno. Su combinación de frutas, flores y notas dulces crea un aroma delicado, juvenil y muy agradable.\n\n🍓 Notas de salida: Notas frutales y frescas, con un toque chispeante.\n🌸 Notas de corazón: Flores delicadas que aportan feminidad y suavidad.\n🍦 Notas de fondo: Vainilla, almizcle y notas cálidas que dejan una estela dulce y envolvente.\n\n💖 Ideal para: Usar todos los días, especialmente en primavera y verano, aunque también queda hermoso para una salida especial.\n\n✨ Haya: dulce, femenino y encantador, un perfume que transmite frescura, alegría y delicadeza."
+
+      },
+
+      { id: "p16",
+        nombre: "Hayaati 100 ml",
+        precio: 62000,
+        categoria: "mujer",
+        oferta: false,
+        imagen: "/mujer/hayati.jpeg",
+        descripcion:
+        "✨ Hayati – Eau de Parfum 100 ml\n\nHayati es una fragancia femenina, elegante y sofisticada, con un aroma dulce, floral y envolvente. Combina notas frutales y florales con un fondo cálido y cremoso que la hace irresistible.\n\n🍓 Notas de salida: Frutas jugosas y frescas que aportan luminosidad.\n🌸 Notas de corazón: Flores delicadas y femeninas que le dan suavidad y elegancia.\n🍦 Notas de fondo: Vainilla, almizcle y notas amaderadas que dejan una estela cálida y envolvente.\n\n💖 Ideal para: Mujeres que buscan un perfume elegante, femenino y versátil, perfecto tanto para el día como para una ocasión especial.\n\n✨ Hayati: sofisticado, femenino y con una estela que se hace notar."
+
+      },
+      { id: "p17",
+        nombre: "Her Confession 100 ml",
+        precio: 86600,
+        categoria: "mujer",
+        oferta: false,
+        imagen: "/mujer/hisconfecc.jpg",
+        descripcion:
+       "✨ Her Confession – Eau de Parfum 100 ml\n\nHer Confession es una fragancia femenina, dulce, floral y sofisticada, con un aroma elegante y envolvente. Combina notas delicadas y cremosas con un fondo cálido que le aporta sensualidad y personalidad.\n\n🌸 Notas de salida: Notas frescas y delicadas que despiertan los sentidos.\n🌹 Notas de corazón: Acordes florales y suaves que aportan feminidad y elegancia.\n🍦 Notas de fondo: Vainilla, almizcle y notas amaderadas que dejan una estela cálida, dulce y envolvente.\n\n💖 Ideal para: Mujeres que buscan un perfume elegante y sensual, perfecto para una salida especial o para cuando quieren sentirse sofisticadas.\n\n✨ Her Confession: dulce, misterioso y femenino, con una presencia elegante que deja huella."
+      },
+
+      {
+        id: "p18",
+        nombre: "The Kingdom 100 ml",
+        precio: 73000,
+        categoria: "mujer",
+        oferta: false,
+        imagen: "/mujer/kido.jpg",
+        descripcion:
+        "✨ The Kingdom – Eau de Parfum 100 ml\n\nThe Kingdom es una fragancia dulce, femenina, floral y sofisticada, con un aroma moderno y envolvente. Combina frutas jugosas, flores delicadas y un fondo cálido y cremoso que le aporta elegancia y sensualidad.\n\n🍓 Notas de salida: Grosellas negras, mandarina y pera, con un toque frutal y fresco.\n🌸 Notas de corazón: Jazmín, peonía y praliné, creando un corazón floral, dulce y femenino.\n🍦 Notas de fondo: Vainilla, almizcle, haba tonka y sándalo, dejando una estela cálida, suave y envolvente.\n\n💖 Ideal para: Mujeres que aman los perfumes dulces, elegantes y femeninos, perfectos para una salida especial o para destacar.\n\n✨ The Kingdom: dulce, sofisticado y seductor, un perfume con una presencia femenina y encantadora."
+
+      },
+
+      { id: "p19",
+        nombre: "fakhar Gold 100 ml",
+        precio: 72500,
+        categoria: "mujer",
+        oferta: false,
+        imagen: "/mujer/rosa.jpg",
+        descripcion:
+       "✨ Fakhar Gold – Eau de Parfum 100 ml\n\nFakhar Gold es una fragancia elegante, cálida, dulce y sofisticada, con un aroma intenso y envolvente que combina notas frutales, florales y amaderadas.\n\n🍊 Notas de salida: Notas frescas y frutales que aportan luminosidad.\n🌸 Notas de corazón: Acordes florales elegantes y femeninos.\n🌳 Notas de fondo: Notas amaderadas, almizcle y acordes cálidos que dejan una estela profunda y sensual.\n\n💖 Ideal para: Quienes buscan un perfume elegante y llamativo, perfecto para la noche, ocasiones especiales o cuando querés dejar huella.\n\n✨ Fakhar Gold: sofisticado, intenso y envolvente, un aroma que transmite elegancia y seguridad."
+
+
+      },
+
+      { 
+          id: "p20",
+          nombre: "Vitoria 100 ml",   
+          precio: 75000,
+          categoria: "mujer",   
+          oferta: false,
+          imagen: "/mujer/vitori.jpg",
+          descripcion:
+          "✨ Victoria – Eau de Parfum 100 ml\n\nVictoria de Lattafa es una fragancia femenina, elegante, dulce y sofisticada, creada para mujeres que buscan un aroma delicado pero con personalidad. Su combinación de notas florales y dulces crea una esencia envolvente, femenina y moderna.\n\n🌸 Familia olfativa: Floral – Dulce.\n✨ Estilo: Femenino, delicado y sofisticado.\n💖 Ideal para: Uso diario, salidas y ocasiones especiales.\n⏳ Sensación: Dulce, elegante y envolvente.\n\n✨ Victoria: delicada, femenina y sofisticada, una fragancia que acompaña cada momento con un toque de elegancia."
+
+      },
+
+      { id: "p21",
+        nombre: "Vulcan 100 ml",
+        precio: 106500,
+        categoria: "unisex",
+        oferta: false,
+        imagen: "/mujer/vulcan.jpg",
+        descripcion:
+       ""
+
+
+      },
+
+    {
+      id: "p22",
+      nombre: "Hawas Diva 100 ml",
+      precio: 95500,
+      categoria: "mujer",
+      oferta: false,
+      imagen: "/mujer/hawas diva.jpg",
+      descripcion:
+     "✨ Hawas Diva – Eau de Parfum 100 ml\n\nHawas Diva es una fragancia femenina, dulce, floral y sofisticada, con un aroma moderno y envolvente. Combina notas frutales y florales con un fondo cálido y cremoso que aporta elegancia, sensualidad y una personalidad irresistible.\n\n🍓 Notas de salida: Frutas jugosas y notas frescas que aportan luminosidad.\n🌸 Notas de corazón: Acordes florales delicados y femeninos que aportan elegancia y suavidad.\n🍦 Notas de fondo: Vainilla, almizcle y notas amaderadas que dejan una estela cálida, dulce y envolvente.\n\n💖 Ideal para: Mujeres que disfrutan de los perfumes dulces, femeninos y sofisticados, perfectos para una salida especial o para destacar.\n\n✨ Hawas Diva: dulce, elegante y seductor, una fragancia femenina que deja huella."
+    },
+
+    { 
+      id: "p23",
+      nombre: "Rose Seduccion 100 ml",
+      precio: 73500,
+      categoria: "mujer",
+      oferta: false,
+      imagen: "/mujer/rosesedu.jpg",
+      descripcion:
+     "✨ Rose Seduction – Eau de Parfum 100 ml\n\nRose Seduction es una fragancia femenina, dulce, floral y sofisticada, con un aroma delicado y seductor. Combina la elegancia de las flores con notas dulces y un fondo cálido y envolvente que aporta feminidad y personalidad.\n\n🌸 Notas de salida: Acordes frescos y florales que aportan luminosidad.\n🌹 Notas de corazón: Rosa y flores delicadas que le dan un toque femenino, elegante y romántico.\n🍦 Notas de fondo: Vainilla, almizcle y notas cálidas que dejan una estela dulce, suave y envolvente.\n\n💖 Ideal para: Mujeres que buscan un perfume femenino, romántico y elegante, perfecto para el día, una salida especial o una ocasión romántica.\n\n✨ Rose Seduction: delicado, dulce y seductor, un aroma femenino que enamora."
+
+
+    },
+    {  
+      id: "p24",
+      nombre: "Papillon d'Or 100 ml",
+      precio: 83000,
+      categoria: "mujer",
+      oferta: false,
+      imagen: "/mujer/papilo.jpg",
+      descripcion:
+     "✨ Papillon D'Or – Eau de Parfum 100 ml\n\nPapillon D'Or es una fragancia femenina, dulce, frutal y floral, con un aroma alegre, moderno y sofisticado. Combina frutas exóticas y mandarina con un corazón floral y cremoso, mientras que su fondo de vainilla y haba tonka aporta calidez, dulzura y una estela envolvente.\n\n🍊 Notas de salida: Frutas exóticas y mandarina, con un comienzo fresco, jugoso y luminoso.\n🌸 Notas de corazón: Flor de azahar, peonía y vainilla, creando un corazón floral, femenino y delicadamente dulce.\n🍦 Notas de fondo: Vainilla, haba tonka y ambroxan, dejando una estela cálida, cremosa y envolvente.\n\n💖 Ideal para: Mujeres que aman los perfumes dulces, frutales y femeninos, perfectos para el día a día, primavera, verano o una salida especial.\n\n✨ Papillon D'Or: dulce, femenino y adictivo, una fragancia luminosa y encantadora que deja huella."
+
+
+
+
+    },
+
+    {
+      id: "p25",
+      nombre: "La Voie 100 ml",
+      precio: 75500,
+      categoria: "mujer",
+      oferta: false,
+      imagen: "/mujer/lavoiejpg.jpg",
+      descripcion:
+    "✨ La Voie – Eau de Parfum 100 ml\n\nLa Voie es una fragancia femenina, elegante y sofisticada, con un aroma floral, fresco y ligeramente dulce. Su combinación de cítricos, flores blancas y un fondo cálido crea una esencia delicada, moderna y muy femenina.\n\n🍊 Notas de salida: Bergamota, pera y pimienta rosa, con un comienzo fresco, luminoso y ligeramente especiado.\n🌸 Notas de corazón: Nardos, flor de azahar y jazmín, aportando un corazón floral, elegante y femenino.\n🍦 Notas de fondo: Vainilla, almizcle, ámbar y cedro, dejando una estela cálida, suave y envolvente.\n\n💖 Ideal para: Mujeres que buscan un perfume elegante, femenino y versátil, perfecto para el día, una salida especial o una ocasión más sofisticada.\n\n✨ La Voie: elegante, delicada y femenina, una fragancia que combina frescura y sensualidad con una estela encantadora."
+    },
+
+    { id: "p26",
+      nombre: "La vivacite 100 ml",
+      precio: 68500,
+      categoria: "mujer",
+      oferta: false,
+      imagen: "/mujer/lavivacite.jpg",
+      descripcion:
+      "✨ La vivacite – Eau de Parfum 100 ml\n\nLavie C'est Belle es una fragancia femenina, dulce, floral y sofisticada, con un aroma elegante y envolvente. Combina notas frutales y florales con un fondo cálido y cremoso que aporta sensualidad, dulzura y personalidad.\n\n🍐 Notas de salida: Frutas frescas y dulces que aportan luminosidad y un comienzo delicado.\n🌸 Notas de corazón: Flores elegantes y femeninas que aportan suavidad y sofisticación.\n🍦 Notas de fondo: Vainilla, almizcle y notas amaderadas que dejan una estela cálida, dulce y envolvente.\n\n💖 Ideal para: Mujeres que disfrutan de los perfumes dulces, femeninos y elegantes, perfectos para una salida especial o para destacar.\n\n✨ Lavie C'est Belle: dulce, sofisticado y femenino, un aroma encantador que deja huella."
+
+
+
+    },
+    {
+      id: "p27",
+      nombre: "L´Intrude 100 ml",
+      precio: 60500,
+      categoria: "mujer",
+      oferta: false,
+      imagen: "/mujer/intrude.jpg",
+      descripcion:
+      "✨ Intrude – Eau de Parfum 100 ml\n\nIntrude es una fragancia femenina, floral, dulce y sofisticada, con un aroma intenso y envolvente. Combina la frescura frutal de la pera y la bergamota con un corazón de flores blancas, creando una esencia elegante, sensual y con mucha personalidad.\n\n🍐 Notas de salida: Pera y bergamota, con un comienzo fresco, jugoso y luminoso.\n🌸 Notas de corazón: Nardos, flor de azahar y jazmín, formando un bouquet floral blanco, elegante y femenino.\n🍦 Notas de fondo: Pachulí, ambroxan, vainilla y vetiver, dejando una estela cálida, dulce, amaderada y envolvente.\n\n💖 Ideal para: Mujeres que buscan un perfume elegante, sensual e intenso, perfecto para la noche, una salida especial o una ocasión en la que quieran destacar.\n\n✨ Intrude: floral, sofisticado y seductor, una fragancia con carácter que deja una huella inolvidable."
+
+
+
+    },
+    { id: "p28",
+      nombre: "Honor & Glory 100 ml",
+      precio: 67000,
+      categoria: "mujer",
+      oferta: false,
+      imagen: "/mujer/honorandlor.jpg",
+      descripcion:
+      "✨ Honor & Glory – Eau de Parfum 100 ml\n\nHonor & Glory de Lattafa es una fragancia unisex, dulce, cremosa y especiada, con un perfil gourmand irresistible. Su apertura combina la jugosidad de la piña con el aroma acaramelado de la crème brûlée, mientras que las especias aportan carácter y profundidad. El fondo de vainilla, sándalo y cachemira deja una estela cálida, suave y envolvente.\n\n🍍 Notas de salida: Piña y crème brûlée, con un comienzo dulce, frutal y acaramelado.\n🌶️ Notas de corazón: Canela, cúrcuma, pimienta negra y benjuí, aportando un toque cálido, especiado y ligeramente resinoso.\n🍦 Notas de fondo: Vainilla, sándalo, cachemira y musgo, dejando una estela cremosa, cálida y envolvente.\n\n💖 Ideal para: Hombres y mujeres que aman los perfumes dulces, gourmand y con personalidad. Perfecto para salidas, noches y días frescos.\n\n✨ Honor & Glory: piña caramelizada, crème brûlée y vainilla en una combinación dulce, cremosa y adictiva que deja huella."
+
+
+
+
+
+    },
+    {
+      id: "p29",
+      nombre: "Badee Al Oud Noble Blush 100 ml",
+      precio: 70000,
+      categoria: "mujer",
+      oferta: false,
+      imagen: "/mujer/badeealoudnobleblush.jpg",
+      descripcion:
+     "✨ Badee Al Oud Noble Blush – Eau de Parfum 100 ml\n\nBadee Al Oud Noble Blush es una fragancia femenina, dulce, cremosa y delicada, con un perfil floral y gourmand. Su apertura de leche de rosa aporta un toque suave y romántico, mientras que la almendra y el merengue crean un corazón cremoso y delicioso. En el fondo, la vainilla, el sándalo y el almizcle dejan una estela cálida, aterciopelada y envolvente.\n\n🌹 Notas de salida: Leche de rosa, con un aroma floral, suave y cremoso.\n🌸 Notas de corazón: Almendra y merengue, aportando dulzura, suavidad y un toque gourmand.\n🍦 Notas de fondo: Vainilla, sándalo y almizcle, dejando una estela cálida, cremosa y sensual.\n\n💖 Ideal para: Mujeres que aman los perfumes dulces, femeninos y cremosos, perfectos para el día a día, una cita o una ocasión especial.\n\n✨ Badee Al Oud Noble Blush: dulce, romántico y aterciopelado, una fragancia femenina que envuelve la piel con un delicioso aroma a rosa cremosa y vainilla."
+
+
+
+    },
+    {
+      id: "p30",
+      nombre: "Badee Al Oud 100 ml",
+      precio: 65000,
+      categoria: "unisex",
+      oferta: false,
+      imagen: "/mujer/badetealoud.jpg",
+      descripcion:
+     "✨ Badee Al Oud – Eau de Parfum 100 ml\n\nBadee Al Oud de Lattafa es una fragancia unisex intensa, especiada y amaderada, con un carácter elegante y misterioso. Su apertura combina azafrán, nuez moscada y lavanda, dando paso a un corazón profundo de oud y pachulí. En el fondo, el almizcle y las maderas aportan una estela cálida, oscura y envolvente.\n\n🌶️ Notas de salida: Azafrán, nuez moscada y lavanda, con un comienzo especiado, aromático y sofisticado.\n🪵 Notas de corazón: Oud y pachulí, aportando profundidad, carácter y un toque oriental.\n🖤 Notas de fondo: Oud, pachulí y almizcle, dejando una estela intensa, cálida y envolvente.\n\n💖 Ideal para: Hombres y mujeres que buscan una fragancia intensa, elegante y con personalidad. Perfecto para la noche, ocasiones especiales y días frescos.\n\n✨ Badee Al Oud: intenso, misterioso y elegante, un perfume oriental con una presencia que se hace notar."
+
+
+
+
+    },
+
+    { 
+     id: "p31",
+      nombre: "Sabah Al Ward 100 ml",
+      precio: 70000,
+      categoria: "mujer",
+      oferta: false,
+      imagen: "/mujer/sabahalwaard.jpg",
+      descripcion:
+      "✨ Sabah Al Ward – Eau de Parfum 100 ml\n\nSabah Al Ward es una fragancia femenina, floral, dulce y cálida, con un aroma elegante y envolvente. Combina la frescura de la mandarina y la pimienta rosa con un corazón floral de jazmín y flor de azahar, acompañado por un delicado toque de cacao. Su fondo de vainilla, haba tonka y pachulí aporta calidez, sensualidad y una estela suave y duradera.\n\n🍊 Notas de salida: Mandarina y pimienta rosa, con un comienzo fresco, luminoso y ligeramente especiado.\n🌸 Notas de corazón: Vaina de cacao, flor de azahar y jazmín sambac, creando un corazón floral, dulce y sofisticado.\n🍦 Notas de fondo: Vainilla, haba tonka y pachulí, dejando una estela cálida, cremosa y envolvente.\n\n💖 Ideal para: Mujeres que buscan un perfume femenino, dulce y elegante, perfecto para salidas, citas, ocasiones especiales o para usar en días frescos.\n\n✨ Sabah Al Ward: floral, dulce y sensual, una fragancia cálida y sofisticada que deja una huella encantadora."
+
+
+
+
+
+    },
+    {
+      id: "p32",
+      nombre: "Sabah Al Ward 100 ml",
+      precio: 70000,
+      categoria: "mujer",
+      oferta: false,
+      imagen: "/mujer/sabahalwaard.jpg",
+      descripcion:
+      "✨ Sabah Al Ward – Eau de Parfum 100 ml\n\nSabah Al Ward es una fragancia femenina, floral, dulce y cálida, con un aroma elegante y envolvente. Combina la frescura de la mandarina y la pimienta rosa con un corazón floral de jazmín y flor de azahar, acompañado por un delicado toque de cacao. Su fondo de vainilla, haba tonka y pachulí aporta calidez, sensualidad y una estela suave y duradera.\n\n🍊 Notas de salida: Mandarina y pimienta rosa, con un comienzo fresco, luminoso y ligeramente especiado.\n🌸 Notas de corazón: Vaina de cacao, flor de azahar y jazmín sambac, creando un corazón floral, dulce y sofisticado.\n🍦 Notas de fondo: Vainilla, haba tonka y pachulí, dejando una estela cálida, cremosa y envolvente.\n\n💖 Ideal para: Mujeres que buscan un perfume femenino, dulce y elegante, perfecto para salidas, citas, ocasiones especiales o para usar en días frescos.\n\n✨ Sabah Al Ward: floral, dulce y sensual, una fragancia cálida y sofisticada que deja una huella encantadora."
+    },
+    { id: "p33",
+      nombre: "9 AM Pour Femme Rosa 100 ml",
+      precio: 87000,
+      categoria: "mujer",
+      oferta: false,
+      imagen: "/mujer/9.jpg",
+      descripcion:
+     "✨ 9 AM Pour Femme Rosa – Eau de Parfum 100 ml\n\n9 AM Pour Femme Rosa de Afnan es una fragancia femenina, fresca, frutal y ligeramente dulce. Su apertura cítrica y vibrante se combina con un corazón de frutos rojos jugosos, mientras que el fondo de almizcle y ámbar aporta calidez y suavidad. Es un perfume alegre, moderno y muy fácil de llevar.\n\n🍊 Notas de salida: Toronja, bergamota y mandarina, con un comienzo fresco, cítrico y luminoso.\n🍓 Notas de corazón: Frambuesa y grosella negra, aportando un toque frutal, dulce y jugoso.\n✨ Notas de fondo: Almizcle, ámbar y naranja, dejando una estela suave, cálida y envolvente.\n\n💖 Ideal para: Mujeres que buscan un perfume fresco, femenino y alegre, perfecto para el día a día, primavera, verano y ocasiones informales.\n\n✨ 9 AM Pour Femme Rosa: fresco, frutal y femenino, una fragancia luminosa y encantadora para comenzar el día con energía."
+
+
+    },
+    { id: "p34",
+      nombre: "Ameerat Al Arab de Lattafa 100 ml",
+      precio:65500,
+      categoria: "mujer",
+      oferta: false,
+      imagen: "/mujer/ameeratalarab.jpg",
+      descripcion:
+     "✨ Ameerat Al Arab – Eau de Parfum 100 ml\n\nAmeerat Al Arab de Lattafa es una fragancia femenina, intensa, floral y especiada, con un aroma oriental elegante y sofisticado. Su apertura verde y fresca combina albahaca, cardamomo y menta, mientras que el corazón floral de madreselva y lavanda aporta suavidad y feminidad. En el fondo, el azafrán, la pimienta y el jazmín dejan una estela cálida, exótica y envolvente.\n\n🌿 Notas de salida: Albahaca, cardamomo y menta, con un comienzo fresco, verde y vibrante.\n🌸 Notas de corazón: Madreselva y lavanda, aportando un toque floral, suave y femenino.\n✨ Notas de fondo: Azafrán, pimienta y jazmín, dejando una estela especiada, cálida y seductora.\n\n💖 Ideal para: Mujeres que buscan un perfume elegante, intenso y con personalidad, perfecto para la noche, ocasiones especiales o días frescos.\n\n✨ Ameerat Al Arab: intenso, oriental y femenino, una fragancia con carácter que deja una huella inolvidable."
+    },
+    { id: "p35",
+      nombre: "Ameerat Al Arab Prive Rose 100 ml",
+      precio: 69000,
+      categoria: "mujer",
+      oferta: false,
+      imagen: "/mujer/amerratroas.jpg",
+      descripcion:
+     "✨ Ameerat Al Arab Prive Rose – Eau de Parfum 100 ml\n\nAmeerat Al Arab Prive Rose es una fragancia femenina, floral, frutal y dulce, con un aroma elegante, romántico y seductor. Su apertura combina fresa, uva y naranja, dando paso a un corazón floral de rosa, jazmín, gardenia, azucena y ylang-ylang. En el fondo, la haba tonka, el ámbar y el sándalo aportan calidez, suavidad y una estela envolvente.\n\n🍓 Notas de salida: Fresa, uva y naranja, con un comienzo frutal, jugoso y luminoso.\n🌹 Notas de corazón: Rosa, almizcle blanco, jazmín, gardenia, azucena y ylang-ylang, creando un corazón floral, femenino y sofisticado.\n🍦 Notas de fondo: Haba tonka, ámbar y sándalo, dejando una estela cálida, cremosa y sensual.\n\n💖 Ideal para: Mujeres que aman los perfumes dulces, florales y femeninos, perfectos para una cita, una salida especial o para sentirse elegantes todos los días.\n\n✨ Ameerat Al Arab Prive Rose: dulce, romántico y seductor, una fragancia femenina que combina frutas jugosas y flores con un fondo cálido y envolvente."
+
+
+
+
+    },
+     { id: "p36",
+      nombre: "Afnan 9 PM Rebel 100 ml",
+      precio: 112000,
+      categoria: "hombre",
+      oferta: false,
+      imagen: "/hombre/9PMRebe.jpeg",
+      descripcion:
+     "Afnan 9 PM Rebel - Eau de Parfum 100 ml. Afnan 9 PM Rebel es una fragancia moderna, vibrante y sofisticada que combina notas frutales, dulces y amaderadas. Sus notas de salida son mandarina, piña y manzana verde. En el corazón se encuentran la madera de cedro, el musgo de roble y la vainilla. Las notas de fondo incluyen caramelo, maderas secas, ámbar gris y almizcle. Ideal para quienes buscan una fragancia versátil y envolvente, perfecta para el día y la noche. Precio: $112.500."
+    },
+     
+    { id: "p37",
+      nombre: "Afnan Supremacy Not Only Intense 100 ml 🖤",
+      precio: 140600,
+      categoria: "hombre",
+      oferta: false,
+      imagen: "/hombre/AfnanSupremacy .jpeg",
+      descripcion:
+     "Afnan Supremacy Not Only Intense - Eau de Parfum 100 ml. Afnan Supremacy Not Only Intense es una fragancia masculina intensa, elegante y poderosa que combina notas frutales, especiadas y amaderadas con un fondo profundo y sofisticado. Notas de salida: bergamota, manzana y grosella negra. Notas de corazón: lavanda, pachulí y musgo de roble. Notas de fondo: azafrán, almizcle y ámbar gris. Ideal para hombres que buscan un perfume intenso, sofisticado y versátil, perfecto para destacar en cualquier ocasión. Una fragancia chipre amaderada con carácter, elegancia y una presencia inolvidable. Precio: $140.600."
+    },
+    { id: "p38",
+      nombre: "Afnan Turathi Blue 100 ml 100 ml",
+      precio: 95000,
+      categoria: "hombre",
+      oferta: false,
+      imagen: "/hombre/AfnanTurathiBlue.jpg",
+      descripcion:
+    "Afnan Turathi Blue - Eau de Parfum. Afnan Turathi Blue es una fragancia masculina fresca, elegante y sofisticada que combina cítricos vibrantes con cálidas notas ambaradas y acordes amaderados. Su aroma transmite frescura, confianza y distinción, ideal para acompañarte durante todo el día. Notas de salida: bergamota y mandarina. Notas de corazón: ámbar y notas amaderadas. Notas de fondo: almizcle, pachulí y especias frescas. Ideal para hombres que buscan un perfume versátil, moderno y elegante, perfecto para destacar en cualquier ocasión."
+    },
+    { id: "p39",
+      nombre: "Al Haramain Amber Oud Aqua Dubai 100 ml",
+      precio: 115500,
+      categoria: "hombre",
+      oferta: false,
+      imagen: "/hombre/AlHaramainAmberOudaquaDubai.jpg",
+      descripcion:
+      "Al Haramain Amber Oud Aqua Dubai - Eau de Parfum. Al Haramain Amber Oud Aqua Dubai es una fragancia fresca, luminosa y sofisticada que combina cítricos vibrantes con jugosas notas frutales y un fondo cálido y envolvente. Su aroma transmite elegancia, frescura y distinción, ideal para quienes buscan un perfume versátil y moderno. Notas de salida: bergamota, mandarina y notas verdes. Notas de corazón: melón, piña y ámbar. Notas de fondo: almizcle, vainilla y petitgrain. Ideal para quienes buscan una combinación irresistible de frescura cítrica, dulzura frutal y calidez ambarada, perfecta para destacar en cualquier ocasión."
+   },
+
+   { id: "p40",
+      nombre: "Afnan 9 PM Elixir  100 ml",
+      precio: 100000,
+      categoria: "hombre",
+      oferta: false,
+      imagen: "/hombre/Afnan 9 PM Elixir .jpg",
+      descripcion:
+      "Una fragancia intensa, seductora y sofisticada que combina especias cálidas, cuero y una dulce vainilla envolvente.Notas de salida: nuez moscada, elemí y cardamomo.Notas de corazón: pimienta de Jamaica, lavandín y cuero.Notas de fondo: jara, ládano, pachulí y vainilla.Un aroma ambarado y especiado, ideal para quienes buscan destacar con elegancia y dejar una huella inolvidable."
+  },
+
+  { id: "p41",
+      nombre: "Afnan 9 AM  100 ml",
+      precio: 51500,
+      categoria: "hombre",
+      oferta: false,
+      imagen: "/hombre/Afnan 9 AM.jpg",
+      descripcion:
+      "Afnan 9 AM ☀️Una fragancia fresca, vibrante y sofisticada que combina cítricos chispeantes, delicadas notas florales y un fondo amaderado y almizclado. Ideal para quienes buscan un aroma versátil, elegante y perfecto para el día a día.Notas de salida: mandarina, cedrat, cardamomo y pimienta rosa.Notas de corazón: lavanda, flor de azahar, rosa y manzana verde.Notas de fondo: madera de cedro, musgo, pachulí y almizcle.Una combinación equilibrada de frescura y elegancia, ideal para cualquier ocasión. ✨"
+
+
+    },
+    
+ 
+
+
+
+{ id: "p42",
+      nombre: "Afnan 9 PM Night Out 100 ml",
+      precio: 116000,
+      categoria: "hombre",
+      oferta: false,
+      imagen: "/hombre/Afnan 9 PM Night Out.jpg",
+      descripcion:
+      "Una fragancia intensa, moderna y magnética que combina frutas exóticas, especias y dulces matices de toffee, sobre un fondo cálido y amaderado. Un aroma sofisticado ysensual, ideal para destacar en las noches especiales.Notas de salida: fruta del dragón, bergamota, coñac, lavanda y manzana.Notas de corazón: cardamomo, mahonial, gamuza, toffee y cedro.Notas de fondo: haba tonka, Akigalawood, Ambrofix y pachulí.Una esencia unisex, atrevida y elegante, creada para dejar una impresión inolvidable."
+
+
+
+    },
+    { id: "p43",
+      nombre: "Al Haramain Amber Oud Dubai Night 100 ml",
+      precio: 116000,
+      categoria: "hombre",
+      oferta: false,
+      imagen: "/hombre/Al Haramain Amber Oud Dubai Night.jpeg ",
+  
+      descripcion:
+     "Al Haramain Amber Oud Dubai Night 🌙 Una fragancia intensa, elegante y misteriosa que combina especias exóticas, delicadas rosas y maderas profundas. Su aroma cálido y envolvente  transmite lujo, sofisticación y personalidad, ideal para destacar en las noches especiales.Notas de salida: azafrán, bergamota y elemí.Notas de corazón: oud, rosa de Bulgaria y lirio de los valles.Notas de fondo: haba tonka, ámbar, almizcle blanco y musgo de roble.Una esencia oriental amaderada, sofisticada y seductora, perfecta para quienes buscan dejar una huella inolvidable. 🖤"
+
+
+
+
+    },
+
+    { id: "p44",
+      nombre: "Armaf Club de Nuit Bling 100 ml",
+      precio: 96000,
+      categoria: "hombre",
+      oferta: false,
+      imagen: "/hombre/Armaf Club de Nuit Bling.jpg ",
+  
+      descripcion:
+     "Armaf Club de Nuit Bling ✨Una fragancia luminosa, moderna y sofisticada que combina la frescura de los cítricos con delicados acordes florales y un fondo cremoso de vainilla y maderas aterciopeladas. Un aroma elegante y envolvente que transmite lujo y personalidad.Notas de salida: cítricos.Notas de corazón: prisma floral y polvo de estrellas.Notas de fondo: vainilla y maderas aterciopeladas.Una fragancia unisex, fresca y amaderada, ideal para quienes buscan destacar con un aroma original y sofisticado. 💎"
+
+
+
+
+    },
+    { id: "p45",
+      nombre: "Armaf Club de Nuit Bling Gold 100 ml",
+      precio: 130000,
+      categoria: "hombre",
+      oferta: false,
+      imagen: "/hombre/Armaf Club de Nuit Bling Gold.jpg ",
+  
+      descripcion:
+     "Armaf Club de Nuit Bling Gold ✨Notas de salida: bergamota, yuzu, durazno, neroli, heliotropo, coco y pimienta rosa.Notas de corazón: jazmín sambac, caramelo, leche, flor de azahar y vainilla de Madagascar.Notas de fondo: almizcle blanco, bálsamo de Perú, vainilla Bourbon, Cashmeran, palo santo, haba tonka y ámbar.Una fragancia floral y gourmand, con una combinación cremosa de caramelo, coco y vainilla, acompañada de cálidas notas ambaradas y amaderadas."
+    },
+    { id: "p46",
+      nombre: "Armaf Club de Nuit Iconic 100 ml",
+      precio: 100800,
+      categoria: "hombre",
+      oferta: false,
+      imagen: "/hombre/Armaf Club de Nuit Iconic.jpg", 
+  
+      descripcion:
+      "Armaf Club de Nuit Iconic 💙Una fragancia fresca, elegante y sofisticada que combina cítricos vibrantes, menta refrescante y especias aromáticas, sobre un fondo cálido de ámbar y maderas nobles. Un aroma masculino, moderno y versátil, ideal para destacar con estilo en cualquier ocasión.Notas de salida: pomelo, limón, menta, pimienta rosa y cilantro.Notas de corazón: jengibre, nuez moscada, jazmín y melón.Notas de fondo: incienso, ámbar, cedro, sándalo, pachulí y ládano.Una combinación irresistible de frescura cítrica y profundidad amaderada, perfecta para quienes buscan elegancia y personalidad. ✨"
+
+
+
+
+    },
+
+    { id: "p47",
+      nombre: "Armaf Club de Nuit Intense Man 100 ml",
+      precio: 89500,
+      categoria: "hombre",
+      oferta: false,
+      imagen: "/hombre/Armaf Club de Nuit Intense Man.jpg", 
+  
+      descripcion:
+     "Una fragancia masculina, intensa y sofisticada que combina cítricos vibrantes y frutas jugosas con un corazón floral y un fondo amaderado con matices ahumados. Un aroma elegante, poderoso y duradero, ideal para quienes buscan destacar con personalidad.Notas de salida: limón, bergamota, manzana, piña y grosella negra.Notas de corazón: rosa, jazmín y abedul.Notas de fondo: almizcle, ámbar gris, pachulí y vainilla.Una combinación irresistible de frescura frutal y profundidad amaderada, perfecta para dejar una impresión inolvidable."
+
+
+
+    }
+
+
+
+
+
+
+    
+      
+    ];
+    
+
+    /* ==========================================================
+       CARRITO
+       ========================================================== */
+
+    const carrito = {};
+
+    const filtros = {
+      categoria: "todos",
+      busqueda: ""
+    };
+
+    /* ==========================================================
+       MODAL
+       ========================================================== */
+
+    let productoModalId = null;
+
+    let cantidadModal = 1;
+
+    const modalProducto =
+      document.getElementById("modal-producto");
+
+    const modalCerrar =
+      document.getElementById("modal-cerrar");
+
+    const modalIcono =
+      document.getElementById("modal-producto-icono");
+
+    const modalCategoria =
+      document.getElementById("modal-producto-categoria");
+
+    const modalNombre =
+      document.getElementById("modal-producto-nombre");
+
+    const modalDescripcion =
+      document.getElementById("modal-producto-descripcion");
+
+    const modalPrecio =
+      document.getElementById("modal-producto-precio");
+
+    const modalCantidad =
+      document.getElementById("modal-cantidad");
+
+    const modalMenos =
+      document.getElementById("modal-menos");
+
+    const modalMas =
+      document.getElementById("modal-mas");
+
+    const modalAgregar =
+      document.getElementById("modal-agregar");
+
+    /* ==========================================================
+       FORMATEAR PRECIO
+       ========================================================== */
+
+    function formatearPrecio(numero) {
+
+      return numero.toLocaleString("es-AR", {
+
+        style: "currency",
+
+        currency: "ARS",
+
+        maximumFractionDigits: 0
+
+      });
+
+    }
+
+    /* ==========================================================
+       FILTROS
+       ========================================================== */
+
+    function productosFiltrados() {
+
+      const texto =
+        filtros.busqueda
+          .trim()
+          .toLowerCase();
+
+      return PRODUCTOS.filter(prod => {
+
+        let pasaCategoria;
+
+        if (
+          filtros.categoria === "todos"
+        ) {
+
+          pasaCategoria = true;
+
+        } else if (
+          filtros.categoria === "oferta"
+        ) {
+
+          pasaCategoria =
+            prod.oferta === true;
+
+        } else {
+
+          pasaCategoria =
+            prod.categoria ===
+            filtros.categoria;
+
+        }
+
+        const pasaBusqueda =
+          prod.nombre
+            .toLowerCase()
+            .includes(texto);
+
+        return (
+          pasaCategoria &&
+          pasaBusqueda
+        );
+
+      });
+
+    }
+
+    /* ==========================================================
+       TOTAL
+       ========================================================== */
+
+    function totalCarrito() {
+
+      return Object.keys(carrito).reduce(
+
+        (total, id) => {
+
+          const producto =
+            PRODUCTOS.find(
+              p => p.id === id
+            );
+
+          if (!producto) {
+            return total;
+          }
+
+          return total +
+            producto.precio *
+            carrito[id];
+
+        },
+
+        0
+
+      );
+
+    }
+
+    /* ==========================================================
+       CONTADOR
+       ========================================================== */
+
+    function actualizarContadorCarrito() {
+
+      const cantidad =
+        Object.values(carrito).reduce(
+
+          (total, cantidad) =>
+            total + cantidad,
+
+          0
+
+        );
+
+      document.getElementById(
+        "carrito-contador"
+      ).textContent = cantidad;
+
+    }
+
+    /* ==========================================================
+       ABRIR PRODUCTO
+       ========================================================== */
+
+    function abrirProducto(id) {
+
+      const producto =
+        PRODUCTOS.find(
+          p => p.id === id
+        );
+
+      if (!producto) return;
+
+      productoModalId = id;
+
+      cantidadModal =
+        carrito[id] > 0
+          ? carrito[id]
+          : 1;
+
+      if (producto.imagen) {
+
+        modalIcono.innerHTML = `
+          <img
+            src="${producto.imagen}"
+            alt="${producto.nombre}"
+          >
+        `;
+
+      } else {
+
+        modalIcono.textContent = "🧴";
+
+      }
+
+      modalCategoria.textContent =
+        producto.categoria;
+
+      modalNombre.textContent =
+        producto.nombre;
+
+      modalDescripcion.textContent =
+        producto.descripcion;
+
+      modalPrecio.textContent =
+        formatearPrecio(
+          producto.precio
+        );
+
+      modalCantidad.textContent =
+        cantidadModal;
+
+      modalProducto.classList.add(
+        "abierto"
+      );
+
+      modalProducto.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      document.body.style.overflow =
+        "hidden";
+
+    }
+
+    /* ==========================================================
+       CERRAR PRODUCTO
+       ========================================================== */
+
+    function cerrarProducto() {
+
+      modalProducto.classList.remove(
+        "abierto"
+      );
+
+      modalProducto.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      document.body.style.overflow =
+        "";
+
+      productoModalId = null;
+
+    }
+
+    /* ==========================================================
+       CANTIDAD MODAL
+       ========================================================== */
+
+    modalMenos.addEventListener(
+      "click",
+      () => {
+
+        cantidadModal =
+          Math.max(
+            1,
+            cantidadModal - 1
+          );
+
+        modalCantidad.textContent =
+          cantidadModal;
+
+      }
+    );
+
+    modalMas.addEventListener(
+      "click",
+      () => {
+
+        cantidadModal++;
+
+        modalCantidad.textContent =
+          cantidadModal;
+
+      }
+    );
+
+    /* ==========================================================
+       AGREGAR DESDE MODAL
+       ========================================================== */
+
+    modalAgregar.addEventListener(
+      "click",
+      () => {
+
+        if (!productoModalId) return;
+
+        carrito[productoModalId] =
+          cantidadModal;
+
+        pintarProductos();
+
+        pintarCarrito();
+
+        cerrarProducto();
+
+      }
+    );
+
+    /* ==========================================================
+       CERRAR MODAL
+       ========================================================== */
+
+    modalCerrar.addEventListener(
+      "click",
+      cerrarProducto
+    );
+
+    modalProducto.addEventListener(
+      "click",
+      event => {
+
+        if (
+          event.target ===
+          modalProducto
+        ) {
+
+          cerrarProducto();
+
+        }
+
+      }
+    );
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Escape" &&
+          modalProducto.classList.contains(
+            "abierto"
+          )
+        ) {
+
+          cerrarProducto();
+
+        }
+
+      }
+    );
+
+    /* ==========================================================
+       MOSTRAR PRODUCTOS
+       ========================================================== */
+
+    function pintarProductos() {
+
+      const cont =
+        document.getElementById(
+          "productos"
+        );
+
+      const lista =
+        productosFiltrados();
+
+      if (lista.length === 0) {
+
+        cont.innerHTML = `
+
+          <p class="sin-resultados">
+            No encontramos perfumes con ese filtro.
+          </p>
+
+        `;
+
+        return;
+
+      }
+
+      cont.innerHTML =
+        lista.map(prod => `
+
+        <div
+          class="producto"
+          data-producto-id="${prod.id}"
+        >
+
+          <span class="categoria">
+            ${prod.categoria}
+          </span>
+
+          <div class="icono">
+
+            ${
+              prod.imagen
+                ? `
+                  <img
+                    src="${prod.imagen}"
+                    alt="${prod.nombre}"
+                  >
+                `
+                : "🧴"
+            }
+
+          </div>
+
+          <h3>
+            ${prod.nombre}
+          </h3>
+
+          <div class="precio">
+            ${formatearPrecio(prod.precio)}
+          </div>
+
+          <div class="fila-agregar">
+
+            <div class="stepper">
+
+              <button
+                type="button"
+                class="btn-cantidad-menos"
+                data-id="${prod.id}"
+              >
+                −
+              </button>
+
+              <span id="cant-${prod.id}">
+                ${carrito[prod.id] || 0}
+              </span>
+
+              <button
+                type="button"
+                class="btn-cantidad-mas"
+                data-id="${prod.id}"
+              >
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `).join("");
+
+    }
+
+    /* ==========================================================
+       CLIC PRODUCTOS
+       ========================================================== */
+
+    document
+      .getElementById("productos")
+      .addEventListener(
+        "click",
+        event => {
+
+          const botonMenos =
+            event.target.closest(
+              ".btn-cantidad-menos"
+            );
+
+          const botonMas =
+            event.target.closest(
+              ".btn-cantidad-mas"
+            );
+
+          if (botonMenos) {
+
+            cambiarCantidad(
+              botonMenos.dataset.id,
+              -1
+            );
+
+            return;
+
+          }
+
+          if (botonMas) {
+
+            cambiarCantidad(
+              botonMas.dataset.id,
+              1
+            );
+
+            return;
+
+          }
+
+          const tarjeta =
+            event.target.closest(
+              ".producto"
+            );
+
+          if (!tarjeta) return;
+
+          abrirProducto(
+            tarjeta.dataset.productoId
+          );
+
+        }
+      );
+
+    /* ==========================================================
+       MOSTRAR CARRITO
+       ========================================================== */
+
+    function pintarCarrito() {
+
+      const cont =
+        document.getElementById(
+          "lineas-carrito"
+        );
+
+      const ids =
+        Object.keys(carrito)
+          .filter(
+            id => carrito[id] > 0
+          );
+
+      if (ids.length === 0) {
+
+        cont.innerHTML = `
+
+          <p class="carrito-vacio">
+            Todavía no agregaste nada.
+          </p>
+
+        `;
+
+      } else {
+
+        cont.innerHTML =
+          ids.map(id => {
+
+            const prod =
+              PRODUCTOS.find(
+                p => p.id === id
+              );
+
+            if (!prod) {
+              return "";
+            }
+
+            const cant =
+              carrito[id];
+
+            const subtotal =
+              prod.precio * cant;
+
+            return `
+
+              <div class="linea-item">
+
+                <span class="nombre">
+
+                  ${prod.nombre}
+
+                  <span class="cant">
+                    ×${cant}
+                  </span>
+
+                </span>
+
+                <span>
+
+                  ${formatearPrecio(
+                    subtotal
+                  )}
+
+                  <button
+                    class="quitar"
+                    type="button"
+                    onclick="quitarDelCarrito('${id}')"
+                  >
+                    quitar
+                  </button>
+
+                </span>
+
+              </div>
+
+            `;
+
+          }).join("");
+
+      }
+
+      const total =
+        totalCarrito();
+
+      document.getElementById(
+        "total-monto"
+      ).textContent =
+        formatearPrecio(total);
+
+      document.getElementById(
+        "btn-pago"
+      ).disabled =
+        total === 0;
+
+      document.getElementById(
+        "btn-whatsapp"
+      ).disabled =
+        total === 0;
+
+      actualizarContadorCarrito();
+
+    }
+
+    /* ==========================================================
+       CAMBIAR CANTIDAD
+       ========================================================== */
+
+    function cambiarCantidad(
+      id,
+      delta
+    ) {
+
+      const actual =
+        carrito[id] || 0;
+
+      const nueva =
+        Math.max(
+          0,
+          actual + delta
+        );
+
+      carrito[id] =
+        nueva;
+
+      const span =
+        document.getElementById(
+          `cant-${id}`
+        );
+
+      if (span) {
+
+        span.textContent =
+          nueva;
+
+      }
+
+      pintarCarrito();
+
+    }
+
+    /* ==========================================================
+       QUITAR
+       ========================================================== */
+
+    function quitarDelCarrito(id) {
+
+      carrito[id] = 0;
+
+      pintarProductos();
+
+      pintarCarrito();
+
+    }
+
+    /* ==========================================================
+       ABRIR CARRITO
+       ========================================================== */
+
+    document
+      .getElementById(
+        "carrito-boton"
+      )
+      .addEventListener(
+        "click",
+        () => {
+
+          document
+            .getElementById("ticket")
+            .classList.add(
+              "abierto"
+            );
+
+        }
+      );
+
+    /* ==========================================================
+       CERRAR CARRITO
+       ========================================================== */
+
+    document
+      .getElementById(
+        "cerrar-carrito"
+      )
+      .addEventListener(
+        "click",
+        () => {
+
+          document
+            .getElementById("ticket")
+            .classList.remove(
+              "abierto"
+            );
+
+        }
+      );
+
+    /* ==========================================================
+       PROVINCIAS Y LOCALIDADES
+       ========================================================== */
+
+    const selectProvincia =
+      document.getElementById(
+        "provincia"
+      );
+
+    const selectLocalidad =
+      document.getElementById(
+        "localidad"
+      );
+
+    const otraLocalidadContainer =
+      document.getElementById(
+        "otra-localidad-container"
+      );
+
+    const otraLocalidadInput =
+      document.getElementById(
+        "otra-localidad"
+      );
+
+    /* ==========================================================
+       LOCALIDADES
+       ========================================================== */
+
+    const localidadesPorProvincia = {
+
+      "Buenos Aires": [
+        "Adolfo Alsina",
+        "Adrogué",
+        "Avellaneda",
+        "Azul",
+        "Bahía Blanca",
+        "Balcarce",
+        "Baradero",
+        "Berazategui",
+        "Berisso",
+        "Bragado",
+        "Campana",
+        "Cañuelas",
+        "Chacabuco",
+        "Chascomús",
+        "Chivilcoy",
+        "Coronel Suárez",
+        "Dolores",
+        "Ensenada",
+        "Escobar",
+        "Esteban Echeverría",
+        "Ezeiza",
+        "Florencio Varela",
+        "General Pueyrredón",
+        "General Rodríguez",
+        "Hurlingham",
+        "Ituzaingó",
+        "José C. Paz",
+        "Junín",
+        "La Matanza",
+        "La Plata",
+        "Lanús",
+        "Lomas de Zamora",
+        "Luján",
+        "Mar del Plata",
+        "Merlo",
+        "Moreno",
+        "Morón",
+        "Necochea",
+        "Olavarría",
+        "Pergamino",
+        "Pilar",
+        "Quilmes",
+        "Ramos Mejía",
+        "San Fernando",
+        "San Isidro",
+        "San Justo",
+        "San Martín",
+        "San Miguel",
+        "Tandil",
+        "Tigre",
+        "Tres Arroyos",
+        "Vicente López",
+        "Zárate"
+      ],
+
+      "Catamarca": [
+        "San Fernando del Valle de Catamarca",
+        "Andalgalá",
+        "Belén",
+        "Fiambalá",
+        "Santa María",
+        "Tinogasta",
+        "Recreo",
+        "Pomán",
+        "El Rodeo",
+        "Mutquín"
+      ],
+
+      "Chaco": [
+        "Resistencia",
+        "Barranqueras",
+        "Fontana",
+        "Puerto Vilelas",
+        "Presidencia Roque Sáenz Peña",
+        "Villa Ángela",
+        "Charata",
+        "General José de San Martín",
+        "Juan José Castelli",
+        "Machagai",
+        "Quitilipi",
+        "Las Breñas"
+      ],
+
+      "Chubut": [
+        "Rawson",
+        "Trelew",
+        "Puerto Madryn",
+        "Comodoro Rivadavia",
+        "Esquel",
+        "Sarmiento",
+        "Rada Tilly",
+        "Puerto Pirámides",
+        "Gaiman",
+        "Dolavon"
+      ],
+
+      "Ciudad Autónoma de Buenos Aires": [
+        "Ciudad Autónoma de Buenos Aires"
+      ],
+
+      "Córdoba": [
+        "Córdoba",
+        "Alta Gracia",
+        "Bell Ville",
+        "Colonia Caroya",
+        "Cosquín",
+        "Cruz del Eje",
+        "Deán Funes",
+        "Embalse",
+        "General Deheza",
+        "Jesús María",
+        "La Calera",
+        "La Carlota",
+        "Laboulaye",
+        "Las Varillas",
+        "Marcos Juárez",
+        "Morteros",
+        "Oncativo",
+        "Río Ceballos",
+        "Río Cuarto",
+        "Río Tercero",
+        "San Francisco",
+        "Santa Rosa de Calamuchita",
+        "Salsipuedes",
+        "Villa Allende",
+        "Villa Carlos Paz",
+        "Villa Dolores",
+        "Villa General Belgrano",
+        "Villa María",
+        "Villa Nueva",
+        "Villa del Totoral",
+        "Unquillo"
+      ],
+
+      "Corrientes": [
+        "Corrientes",
+        "Bella Vista",
+        "Curuzú Cuatiá",
+        "Esquina",
+        "Gobernador Virasoro",
+        "Goya",
+        "Ituzaingó",
+        "Mercedes",
+        "Monte Caseros",
+        "Paso de los Libres",
+        "Saladas",
+        "Santo Tomé"
+      ],
+
+      "Entre Ríos": [
+        "Paraná",
+        "Concordia",
+        "Gualeguaychú",
+        "Gualeguay",
+        "Concepción del Uruguay",
+        "Colón",
+        "Chajarí",
+        "Crespo",
+        "Diamante",
+        "Federación",
+        "La Paz",
+        "Nogoyá",
+        "Victoria",
+        "Villaguay",
+        "San José"
+      ],
+
+      "Formosa": [
+        "Formosa",
+        "Clorinda",
+        "El Colorado",
+        "Pirané",
+        "Ingeniero Juárez",
+        "Las Lomitas",
+        "Laguna Blanca",
+        "Ibarreta",
+        "Comandante Fontana"
+      ],
+
+      "Jujuy": [
+        "San Salvador de Jujuy",
+        "Palpalá",
+        "San Pedro de Jujuy",
+        "Libertador General San Martín",
+        "Perico",
+        "La Quiaca",
+        "Humahuaca",
+        "Tilcara",
+        "Abra Pampa",
+        "El Carmen"
+      ],
+
+      "La Pampa": [
+        "Santa Rosa",
+        "General Pico",
+        "General Acha",
+        "Toay",
+        "Eduardo Castex",
+        "Realicó",
+        "Victorica",
+        "25 de Mayo",
+        "Macachín",
+        "Intendente Alvear"
+      ],
+
+      "La Rioja": [
+        "La Rioja",
+        "Chilecito",
+        "Aimogasta",
+        "Chamical",
+        "Chepes",
+        "Villa Unión",
+        "Famatina",
+        "Nonogasta"
+      ],
+
+      "Mendoza": [
+        "Mendoza",
+        "Godoy Cruz",
+        "Guaymallén",
+        "Las Heras",
+        "Luján de Cuyo",
+        "Maipú",
+        "San Rafael",
+        "General Alvear",
+        "Malargüe",
+        "Tunuyán",
+        "San Martín",
+        "Rivadavia",
+        "Junín",
+        "Lavalle",
+        "San Carlos"
+      ],
+
+      "Misiones": [
+        "Posadas",
+        "Puerto Iguazú",
+        "Eldorado",
+        "Oberá",
+        "Leandro N. Alem",
+        "Apóstoles",
+        "Montecarlo",
+        "Puerto Rico",
+        "San Vicente",
+        "Jardín América",
+        "Wanda",
+        "San Pedro"
+      ],
+
+      "Neuquén": [
+        "Neuquén",
+        "Centenario",
+        "Plottier",
+        "Cutral Có",
+        "Plaza Huincul",
+        "San Martín de los Andes",
+        "Villa La Angostura",
+        "Zapala",
+        "Junín de los Andes",
+        "Chos Malal",
+        "Rincón de los Sauces",
+        "Añelo"
+      ],
+
+      "Río Negro": [
+        "Viedma",
+        "San Carlos de Bariloche",
+        "General Roca",
+        "Cipolletti",
+        "Villa Regina",
+        "Allen",
+        "Cinco Saltos",
+        "Catriel",
+        "El Bolsón",
+        "Choele Choel",
+        "San Antonio Oeste"
+      ],
+
+      "Salta": [
+        "Salta",
+        "San Ramón de la Nueva Orán",
+        "Tartagal",
+        "General Güemes",
+        "Metán",
+        "Cafayate",
+        "Rosario de la Frontera",
+        "Joaquín V. González",
+        "Embarcación",
+        "Pichanal",
+        "Cerrillos",
+        "Campo Quijano"
+      ],
+
+      "San Juan": [
+        "San Juan",
+        "Rawson",
+        "Rivadavia",
+        "Chimbas",
+        "Santa Lucía",
+        "Pocito",
+        "Caucete",
+        "Jáchal",
+        "Albardón",
+        "Sarmiento",
+        "San José de Jáchal"
+      ],
+
+      "San Luis": [
+        "San Luis",
+        "Villa Mercedes",
+        "Merlo",
+        "La Punta",
+        "Juana Koslay",
+        "Justo Daract",
+        "Quines",
+        "Santa Rosa del Conlara",
+        "Naschel",
+        "Buena Esperanza"
+      ],
+
+      "Santa Cruz": [
+        "Río Gallegos",
+        "Caleta Olivia",
+        "El Calafate",
+        "Pico Truncado",
+        "Puerto Deseado",
+        "Las Heras",
+        "Puerto San Julián",
+        "Gobernador Gregores",
+        "28 de Noviembre",
+        "Río Turbio"
+      ],
+
+      "Santa Fe": [
+        "Santa Fe",
+        "Rosario",
+        "Rafaela",
+        "Venado Tuerto",
+        "Reconquista",
+        "Villa Gobernador Gálvez",
+        "Santo Tomé",
+        "Esperanza",
+        "Casilda",
+        "Cañada de Gómez",
+        "San Lorenzo",
+        "Firmat",
+        "Funes",
+        "Roldán",
+        "Granadero Baigorria",
+        "Arroyo Seco"
+      ],
+
+      "Santiago del Estero": [
+        "Santiago del Estero",
+        "La Banda",
+        "Termas de Río Hondo",
+        "Frías",
+        "Añatuya",
+        "Fernández",
+        "Monte Quemado",
+        "Quimilí",
+        "Loreto",
+        "Clodomira"
+      ],
+
+      "Tierra del Fuego, Antártida e Islas del Atlántico Sur": [
+        "Ushuaia",
+        "Río Grande",
+        "Tolhuin"
+      ],
+
+      "Tucumán": [
+        "San Miguel de Tucumán",
+        "Yerba Buena",
+        "Tafí Viejo",
+        "Concepción",
+        "Aguilares",
+        "Monteros",
+        "Banda del Río Salí",
+        "Lules",
+        "Alderetes",
+        "Famaillá",
+        "Bella Vista",
+        "Simoca",
+        "Tafí del Valle"
+      ]
+
+    };
+
+    /* ==========================================================
+       PROVINCIAS
+       ========================================================== */
+
+    const provinciasArgentina = [
+
+      "Buenos Aires",
+      "Catamarca",
+      "Chaco",
+      "Chubut",
+      "Ciudad Autónoma de Buenos Aires",
+      "Córdoba",
+      "Corrientes",
+      "Entre Ríos",
+      "Formosa",
+      "Jujuy",
+      "La Pampa",
+      "La Rioja",
+      "Mendoza",
+      "Misiones",
+      "Neuquén",
+      "Río Negro",
+      "Salta",
+      "San Juan",
+      "San Luis",
+      "Santa Cruz",
+      "Santa Fe",
+      "Santiago del Estero",
+      "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+      "Tucumán"
+
+    ];
+
+    /* ==========================================================
+       CARGAR PROVINCIAS
+       ========================================================== */
+
+    function cargarProvincias() {
+
+      selectProvincia.innerHTML = `
+
+        <option value="">
+          Seleccioná una provincia
+        </option>
+
+      `;
+
+      provinciasArgentina
+        .sort((a, b) =>
+          a.localeCompare(b, "es")
+        )
+        .forEach(provincia => {
+
+          const option =
+            document.createElement(
+              "option"
+            );
+
+          option.value =
+            provincia;
+
+          option.textContent =
+            provincia;
+
+          selectProvincia.appendChild(
+            option
+          );
+
+        });
+
+    }
+
+    /* ==========================================================
+       CARGAR LOCALIDADES
+       ========================================================== */
+
+    function cargarLocalidades(
+      provincia
+    ) {
+
+      selectLocalidad.disabled =
+        true;
+
+      selectLocalidad.innerHTML = `
+
+        <option value="">
+          Seleccioná una localidad
+        </option>
+
+      `;
+
+      otraLocalidadContainer.style.display =
+        "none";
+
+      otraLocalidadInput.value =
+        "";
+
+      if (!provincia) {
+
+        selectLocalidad.innerHTML = `
+
+          <option value="">
+            Primero seleccioná una provincia
+          </option>
+
+        `;
+
+        return;
+
+      }
+
+      const localidades =
+        localidadesPorProvincia[
+          provincia
+        ] || [];
+
+      const localidadesOrdenadas =
+        [...localidades].sort(
+          (a, b) =>
+            a.localeCompare(
+              b,
+              "es"
+            )
+        );
+
+      localidadesOrdenadas.forEach(
+        localidad => {
+
+          const option =
+            document.createElement(
+              "option"
+            );
+
+          option.value =
+            localidad;
+
+          option.textContent =
+            localidad;
+
+          selectLocalidad.appendChild(
+            option
+          );
+
+        }
+      );
+
+      const otraOption =
+        document.createElement(
+          "option"
+        );
+
+      otraOption.value =
+        "__OTRA__";
+
+      otraOption.textContent =
+        "Otra localidad";
+
+      selectLocalidad.appendChild(
+        otraOption
+      );
+
+      selectLocalidad.disabled =
+        false;
+
+    }
+
+    /* ==========================================================
+       CAMBIO PROVINCIA
+       ========================================================== */
+
+    selectProvincia.addEventListener(
+      "change",
+      event => {
+
+        cargarLocalidades(
+          event.target.value
+        );
+
+      }
+    );
+
+    /* ==========================================================
+       CAMBIO LOCALIDAD
+       ========================================================== */
+
+    selectLocalidad.addEventListener(
+      "change",
+      event => {
+
+        if (
+          event.target.value ===
+          "__OTRA__"
+        ) {
+
+          otraLocalidadContainer.style.display =
+            "block";
+
+          otraLocalidadInput.focus();
+
+        } else {
+
+          otraLocalidadContainer.style.display =
+            "none";
+
+          otraLocalidadInput.value =
+            "";
+
+        }
+
+      }
+    );
+
+    /* ==========================================================
+       OBTENER LOCALIDAD
+       ========================================================== */
+
+    function obtenerLocalidad() {
+
+      const seleccion =
+        selectLocalidad.value;
+
+      if (
+        seleccion === "__OTRA__"
+      ) {
+
+        return otraLocalidadInput
+          .value
+          .trim();
+
+      }
+
+      return seleccion.trim();
+
+    }
+
+    /* ==========================================================
+       DATOS CLIENTE
+       ========================================================== */
+
+    function obtenerDatosCliente() {
+
+      return {
+
+        nombre:
+          document
+            .getElementById("nombre")
+            .value
+            .trim(),
+
+        email:
+          document
+            .getElementById("email")
+            .value
+            .trim(),
+
+        telefono:
+          document
+            .getElementById("telefono")
+            .value
+            .trim(),
+
+        direccion:
+          document
+            .getElementById("direccion")
+            .value
+            .trim(),
+
+        localidad:
+          obtenerLocalidad(),
+
+        provincia:
+          selectProvincia.value.trim(),
+
+        codigoPostal:
+          document
+            .getElementById(
+              "codigo-postal"
+            )
+            .value
+            .trim()
+
+      };
+
+    }
+
+    /* ==========================================================
+       VALIDAR DATOS
+       ========================================================== */
+
+    function validarDatos() {
+
+      const datos =
+        obtenerDatosCliente();
+
+      if (!datos.nombre) {
+
+        mostrarEstado(
+          "Ingresá tu nombre.",
+          "error"
+        );
+
+        return null;
+
+      }
+
+      if (!datos.email) {
+
+        mostrarEstado(
+          "Ingresá tu email.",
+          "error"
+        );
+
+        return null;
+
+      }
+
+      const emailValido =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+          .test(
+            datos.email
+          );
+
+      if (!emailValido) {
+
+        mostrarEstado(
+          "Ingresá un email válido.",
+          "error"
+        );
+
+        return null;
+
+      }
+
+      if (!datos.direccion) {
+
+        mostrarEstado(
+          "Ingresá la dirección de envío.",
+          "error"
+        );
+
+        return null;
+
+      }
+
+      if (!datos.provincia) {
+
+        mostrarEstado(
+          "Seleccioná una provincia.",
+          "error"
+        );
+
+        return null;
+
+      }
+
+      if (!datos.localidad) {
+
+        mostrarEstado(
+          "Seleccioná o escribí una localidad.",
+          "error"
+        );
+
+        return null;
+
+      }
+
+      if (!datos.codigoPostal) {
+
+        mostrarEstado(
+          "Ingresá el código postal.",
+          "error"
+        );
+
+        return null;
+
+      }
+
+      if (
+        totalCarrito() <= 0
+      ) {
+
+        mostrarEstado(
+          "El carrito está vacío.",
+          "error"
+        );
+
+        return null;
+
+      }
+
+      return datos;
+
+    }
+
+    /* ==========================================================
+       ITEMS
+       ========================================================== */
+
+    function obtenerItems() {
+
+      return Object.keys(carrito)
+
+        .filter(
+          id => carrito[id] > 0
+        )
+
+        .map(id => {
+
+          const producto =
+            PRODUCTOS.find(
+              p => p.id === id
+            );
+
+          return {
+
+            id: producto.id,
+
+            nombre: producto.nombre,
+
+            precio: producto.precio,
+
+            cantidad: carrito[id]
+
+          };
+
+        });
+
+    }
+
+    /* ==========================================================
+       MENSAJE WHATSAPP
+       ========================================================== */
+
+    function armarMensajePedido() {
+
+      const datos =
+        obtenerDatosCliente();
+
+      const items =
+        obtenerItems();
+
+      const lineas = [
+
+        "¡Hola! Quiero hacer este pedido:",
+
+        "",
+
+        `Cliente: ${datos.nombre}`,
+
+        `Email: ${datos.email}`
+
+      ];
+
+      if (datos.telefono) {
+
+        lineas.push(
+          `Teléfono: ${datos.telefono}`
+        );
+
+      }
+
+      lineas.push("");
+
+      lineas.push(
+        "📦 Envío por Correo Argentino:"
+      );
+
+      lineas.push(
+        `Dirección: ${datos.direccion}`
+      );
+
+      lineas.push(
+        `Localidad: ${datos.localidad}`
+      );
+
+      lineas.push(
+        `Provincia: ${datos.provincia}`
+      );
+
+      lineas.push(
+        `Código Postal: ${datos.codigoPostal}`
+      );
+
+      lineas.push("");
+
+      items.forEach(item => {
+
+        lineas.push(
+
+          `• ${item.nombre} x${item.cantidad} — ` +
+          `${formatearPrecio(
+            item.precio *
+            item.cantidad
+          )}`
+
+        );
+
+      });
+
+      lineas.push("");
+
+      lineas.push(
+
+        `Total: ${formatearPrecio(
+          totalCarrito()
+        )}`
+
+      );
+
+      return lineas.join(
+        "\n"
+      );
+
+    }
+
+    /* ==========================================================
+       BOTON WHATSAPP
+       ========================================================== */
+
+    document
+      .getElementById(
+        "btn-whatsapp"
+      )
+      .addEventListener(
+        "click",
+        () => {
+
+          const datos =
+            validarDatos();
+
+          if (!datos) return;
+
+          const mensaje =
+            armarMensajePedido();
+
+          const url =
+            `https://wa.me/${NUMERO_WHATSAPP}` +
+            `?text=${encodeURIComponent(mensaje)}`;
+
+          window.open(
+            url,
+            "_blank"
+          );
+
+        }
+      );
+
+    /* ==========================================================
+       MERCADO PAGO
+       ========================================================== */
+
+    document
+      .getElementById(
+        "btn-pago"
+      )
+      .addEventListener(
+        "click",
+        async () => {
+
+          const datos =
+            validarDatos();
+
+          if (!datos) return;
+
+          const boton =
+            document.getElementById(
+              "btn-pago"
+            );
+
+          boton.disabled =
+            true;
+
+          mostrarEstado(
+            "Preparando el pago..."
+          );
+
+          try {
+
+            const respuesta =
+              await fetch(
+                "/api/create-preference",
+                {
+
+                  method: "POST",
+
+                  headers: {
+                    "Content-Type":
+                      "application/json"
+                  },
+
+                  body:
+                    JSON.stringify({
+
+                      cliente:
+                        datos,
+
+                      items:
+                        obtenerItems()
+
+                    })
+
+                }
+              );
+
+            const resultado =
+              await respuesta.json();
+
+            if (!respuesta.ok) {
+
+              throw new Error(
+
+                resultado.error ||
+                "No se pudo crear el pago."
+
+              );
+
+            }
+
+            if (
+              !resultado.init_point
+            ) {
+
+              throw new Error(
+
+                "Mercado Pago no devolvió el enlace de pago."
+
+              );
+
+            }
+
+            window.location.href =
+              resultado.init_point;
+
+          } catch (error) {
+
+            console.error(
+              "Error:",
+              error
+            );
+
+            mostrarEstado(
+              error.message,
+              "error"
+            );
+
+            boton.disabled =
+              false;
+
+          }
+
+        }
+      );
+
+    /* ==========================================================
+       ESTADO
+       ========================================================== */
+
+    function mostrarEstado(
+      mensaje,
+      tipo = ""
+    ) {
+
+      const estado =
+        document.getElementById(
+          "estado"
+        );
+
+      estado.textContent =
+        mensaje;
+
+      estado.className =
+        `estado ${tipo}`;
+
+      estado.hidden =
+        false;
+
+    }
+
+    /* ==========================================================
+       BUSCADOR
+       ========================================================== */
+
+    document
+      .getElementById(
+        "input-busqueda"
+      )
+      .addEventListener(
+        "input",
+        event => {
+
+          filtros.busqueda =
+            event.target.value;
+
+          pintarProductos();
+
+        }
+      );
+
+    /* ==========================================================
+       CATEGORIAS
+       ========================================================== */
+
+    document
+      .getElementById(
+        "tabs-categoria"
+      )
+      .addEventListener(
+        "click",
+        event => {
+
+          const boton =
+            event.target.closest(
+              ".tab-categoria"
+            );
+
+          if (!boton) return;
+
+          filtros.categoria =
+            boton.dataset.cat;
+
+          document
+            .querySelectorAll(
+              ".tab-categoria"
+            )
+            .forEach(b => {
+
+              b.classList.remove(
+                "activo"
+              );
+
+            });
+
+          boton.classList.add(
+            "activo"
+          );
+
+          pintarProductos();
+
+        }
+      );
+
+    /* ==========================================================
+       INICIO
+       ========================================================== */
+
+    cargarProvincias();
+
+    pintarProductos();
+
+    pintarCarrito();
+
+  </script>
+
+  <!-- ==========================================================
+       PIE
+       ========================================================== -->
+
+  <footer class="pie-pagina">
+
+    Tienda online · Envíos por Correo Argentino ·
+    WhatsApp + Mercado Pago
+
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¡Pago aprobado! | Tu Perfu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      font-family: "Nunito", system-ui, sans-serif; background: #f7f3ee; color: #2b2b2b; padding: 20px;
+    }
+    .caja {
+      background: #fff; max-width: 440px; width: 100%; text-align: center;
+      padding: 36px 28px; border-radius: 18px; box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    }
+    .caja img { width: 84px; height: 84px; object-fit: cover; border-radius: 50%; margin-bottom: 14px; }
+    .icono { font-size: 44px; margin-bottom: 6px; }
+    h1 { margin: 0 0 10px; font-size: 26px; font-weight: 800; }
+    p { margin: 0 0 22px; line-height: 1.5; color: #555; }
+    a.boton {
+      display: inline-block; background: #2b2b2b; color: #fff; text-decoration: none;
+      padding: 12px 26px; border-radius: 999px; font-weight: 700;
+    }
+    .ref { font-size: 13px; color: #888; margin: -10px 0 20px; }
+  </style>
+</head>
+<body>
+  <div class="caja">
+    <img src="/logo.jpeg" alt="Tu Perfu">
+    <div class="icono">✅</div>
+    <h1>¡Pago aprobado!</h1>
+    <p>Recibimos tu pago correctamente. En breve nos vamos a comunicar con vos para coordinar la entrega. ¡Gracias por tu compra!</p>
+    <p class="ref" id="ref"></p>
+    <a class="boton" href="/">Volver a la tienda</a>
+  </div>
+  <script>
+    var ref = new URLSearchParams(location.search).get("external_reference");
+    if (ref) document.getElementById("ref").textContent = "Código de pedido: " + ref;
+  </script>
+</body>
+</html>
